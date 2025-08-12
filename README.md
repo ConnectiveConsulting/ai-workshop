@@ -8,7 +8,6 @@ Exercises for the Connective Consulting AI workshop
 
 # Exercises
 
-1. x
-2. x
-3. x
-4. [MCP Servers](4.1-mcp/README.md)
+1. [Environment Setup](exercises/1.1-README.md)
+2. 
+4. [MCP Servers](exercises/4.1-mcp/README.md)
