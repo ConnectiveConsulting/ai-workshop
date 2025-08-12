@@ -1,3 +1,11 @@
+data "template_file" "init_script" {
+    template = "${file("init.ps1")}"
+    vars = {
+        workshop_directory    = "${var.workshop_directory}"
+        workshop_git_repo_url = "${var.workshop_git_repo_url}"
+  }
+}
+
 # Resource Group
 resource "azurerm_resource_group" "workshop_rg" {
   name     = var.resource_group_name
@@ -129,14 +137,14 @@ resource "azurerm_virtual_machine_extension" "workshop_vm_extension" {
   virtual_machine_id   = azurerm_windows_virtual_machine.workshop_vm[count.index].id
   publisher            = "Microsoft.Compute"
   type                 = "CustomScriptExtension"
-  type_handler_version = "2.0"
+  type_handler_version = "1.9"
   depends_on           = [ azurerm_windows_virtual_machine.workshop_vm ]
 
-  protected_settings = <<PROT
+  protected_settings = <<SETTINGS
   {
-    "script": "${base64encode(templatefile("init.ps1", { workshop_directory="${var.workshop_directory}", workshop_git_repo_url="${var.workshop_git_repo_url}" }))}"
+    "commandToExecute": "powershell -command \"[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String('${base64encode(data.template_file.init_script.rendered)}')) | Out-File -filepath init.ps1\" && powershell -ExecutionPolicy Unrestricted -File init.ps1 -workshop_directory ${replace(data.template_file.init_script.vars.workshop_directory, "\\", "\\\\")} -workshop_git_repo_url ${data.template_file.init_script.vars.workshop_git_repo_url}"
   }
-  PROT
+  SETTINGS
 
   tags = var.tags
 }
