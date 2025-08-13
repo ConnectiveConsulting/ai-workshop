@@ -19,12 +19,24 @@ Set-ExecutionPolicy Bypass -Scope Process -Force;
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'));
 
 # Install Visual Studio Code
-choco install vscode -y
+choco install vscode -y --ignore-checksums
 
 # Install Chrome and make it the default browser
-choco install googlechrome -y
+choco install googlechrome -y --ignore-checksums
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http\UserChoice" -Name "ProgId" -Value "ChromeHTML"
 
 # Install Firefox and make it the default browser
 #choco install firefox -y
 #Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http\UserChoice" -Name "ProgId" -Value "FirefoxURL"
+
+# Install WinGet
+$progressPreference = 'silentlyContinue'
+Write-Host "Installing WinGet PowerShell module from PSGallery..."
+Install-PackageProvider -Name NuGet -Force | Out-Null
+Install-Module -Name Microsoft.WinGet.Client -Force -Repository PSGallery | Out-Null
+Write-Host "Using Repair-WinGetPackageManager cmdlet to bootstrap WinGet..."
+Repair-WinGetPackageManager -AllUsers
+Write-Host "Done."
+
+# Install .NET 10 preview
+winget install Microsoft.DotNet.SDK.Preview --disable-interactivity --accept-package-agreements --accept-source-agreements
