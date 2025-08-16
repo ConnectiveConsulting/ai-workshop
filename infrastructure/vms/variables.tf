@@ -13,7 +13,6 @@ variable "location" {
 variable "vm_count" {
   description = "Number of Visual Studio 2022 VMs to create"
   type        = number
-  default     = 1
   validation {
     condition     = var.vm_count > 0
     error_message = "VM count must be greater than 0."

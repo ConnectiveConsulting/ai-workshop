@@ -31,7 +31,7 @@ output "rdp_connection_strings" {
   description = "RDP connection strings for each VM"
   value = [
     for i in range(var.vm_count) : 
-    "mstsc.exe /prompt /v:${azurerm_public_ip.workshop_vm_pip[i].ip_address}"
+    "mstsc.exe /v:${azurerm_public_ip.workshop_vm_pip[i].ip_address}"
   ]
 }
 
