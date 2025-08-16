@@ -40,3 +40,11 @@ Write-Host "Done."
 
 # Install .NET 10 preview
 winget install Microsoft.DotNet.SDK.Preview --disable-interactivity --accept-package-agreements --accept-source-agreements
+
+# Create a desktop shortcut to https://github.com/ConnectiveConsulting/ai-workshop
+$shortcutPath = "$env:USERPROFILE\Desktop\AI_Workshop.lnk"
+$targetPath = "https://github.com/ConnectiveConsulting/ai-workshop"
+$WScriptShell = New-Object -ComObject WScript.Shell
+$shortcut = $WScriptShell.CreateShortcut($shortcutPath)
+$shortcut.TargetPath = $targetPath
+$shortcut.Save()
