@@ -29,6 +29,9 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\Shell\Associations\UrlA
 #choco install firefox -y
 #Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http\UserChoice" -Name "ProgId" -Value "FirefoxURL"
 
+# Install Python
+choco install python -y --ignore-checksums
+
 # Install WinGet
 $progressPreference = 'silentlyContinue'
 Write-Host "Installing WinGet PowerShell module from PSGallery..."
