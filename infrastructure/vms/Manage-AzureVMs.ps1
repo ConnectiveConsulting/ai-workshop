@@ -89,6 +89,22 @@ function Start-TargetVMs {
             $result = az vm start --resource-group $vm.resourceGroup --name $vm.name 2>&1
             if ($LASTEXITCODE -eq 0) {
                 Write-Host "Successfully started VM: $($vm.name)" -ForegroundColor Green
+                # Get the public IP address
+                $nicId = $vm.networkProfile.networkInterfaces[0].id
+                $nic = az network nic show --ids $nicId -o json | ConvertFrom-Json
+                $ipConfig = $nic.ipConfigurations[0]
+                if ($ipConfig.publicIpAddress) {
+                    $publicIpId = $ipConfig.publicIpAddress.id
+                    $publicIp = az network public-ip show --ids $publicIpId -o json | ConvertFrom-Json
+                    $ipAddress = $publicIp.ipAddress
+                    if ($ipAddress) {
+                        Write-Host "  Public IP: $ipAddress" -ForegroundColor Magenta
+                    } else {
+                        Write-Host "  No public IP address assigned." -ForegroundColor DarkYellow
+                    }
+                } else {
+                    Write-Host "  No public IP address assigned." -ForegroundColor DarkYellow
+                }
             } else {
                 Write-Warning "Failed to start VM: $($vm.name). Details: $result"
             }
