@@ -51,3 +51,9 @@ $WScriptShell = New-Object -ComObject WScript.Shell
 $shortcut = $WScriptShell.CreateShortcut($shortcutPath)
 $shortcut.TargetPath = $targetPath
 $shortcut.Save()
+
+# Init projects
+Set-Location C:\Workshop\projects\checklist
+npm i
+Set-Location C:\Workshop\projects\pokedex\pokedex-frontend
+npm i

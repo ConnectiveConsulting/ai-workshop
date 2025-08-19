@@ -14,7 +14,7 @@ resource "random_string" "suffix" {
 
 # Create SQL Server
 resource "azurerm_mssql_server" "sql_server" {
-  name                         = "${var.sql_server_name}-${random_string.suffix.result}"
+  name                         = "${var.sql_server_name}"
   resource_group_name          = azurerm_resource_group.sql.name
   location                     = azurerm_resource_group.sql.location
   version                      = "12.0"

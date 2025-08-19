@@ -20,6 +20,11 @@ output "vm_public_ips" {
   value       = azurerm_public_ip.workshop_vm_pip[*].ip_address
 }
 
+output "vm_domain_names" {
+  description = "Domain names of the VMs"
+  value       = [for i in range(var.vm_count) : "${var.dns_name_label}-${i + 1}.${azurerm_resource_group.workshop_rg.location}.cloudapp.azure.com"]
+}
+
 output "vm_admin_username" {
   description = "Admin username for the VMs"
   value       = var.admin_username

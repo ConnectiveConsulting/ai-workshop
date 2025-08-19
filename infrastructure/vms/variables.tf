@@ -111,3 +111,8 @@ variable "enable_git_clone" {
   type        = bool
   default     = true
 }
+
+variable "dns_name_label" {
+  description = "Base DNS name label for the public IPs. The instance number will be appended. Must be unique within the Azure region."
+  type        = string
+}

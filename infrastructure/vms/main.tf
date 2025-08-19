@@ -63,6 +63,7 @@ resource "azurerm_public_ip" "workshop_vm_pip" {
   name                = "${var.vm_name_prefix}-${count.index + 1}-pip"
   location            = azurerm_resource_group.workshop_rg.location
   resource_group_name = azurerm_resource_group.workshop_rg.name
+  domain_name_label   = "${var.dns_name_label}-${count.index + 1}"
   allocation_method   = "Static"
   sku                 = "Standard"
   tags                = var.tags
