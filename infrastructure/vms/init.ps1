@@ -12,6 +12,11 @@ New-Item -Path $workshop_directory -ItemType Directory -Force;
 # Clone the repository
 cd $workshop_directory;
 git clone $workshop_git_repo_url .;
+# Make the directory safe for Git (otherwise users get ownership errors trying to do git commands)
+git config --global --add safe.directory C:/Workshop
+# Configure user information
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
 
 # Install Chocolatey
 Set-ExecutionPolicy Bypass -Scope Process -Force;

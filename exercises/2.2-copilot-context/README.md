@@ -39,7 +39,7 @@ In this exercise we will exploit the fact that this new feature did not exist wh
 
 1. Copilot should fail on this task. Edit mode in Copilot does not use any external tools, and the knowledge cutoff of Claude Sonnet 3.5 is April 2024, long before documentation on the new extension member syntax in C# 14 was available.
 
-    Take note of what Copilot suggests and how it approaches the problem. It might hallucinate a solution based on its training data, or make random changes that don't seem to address the prompt.
+    > Take note of what Copilot suggests and how it approaches the problem. It might hallucinate a solution based on its training data, it might make random changes that don't seem to address the prompt, or might tell you it finished the task without doing anything at all!
 
 1. Do not accept the initial suggestions from Copilot. Instead, click the "Reject" button to undo the changes.
 
