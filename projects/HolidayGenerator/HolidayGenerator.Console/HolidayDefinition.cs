@@ -1,5 +1,14 @@
+namespace HolidayGenerator;
+
 public class HolidayDefinition
 {
+    /// <summary>
+    /// Creates a new empty definition for a holiday that falls on January 1st.
+    /// </summary>
+    public HolidayDefinition() : this(string.Empty, Month.January, 1)
+    {
+    }
+
     /// <summary>
     /// Creates a new definition for a holiday that falls on the same day number each month.
     /// e.g. for Independence Day:
@@ -10,6 +19,9 @@ public class HolidayDefinition
     /// <param name="day">The day of the month the holiday falls on.</param>
     public HolidayDefinition(string name, Month month, int day)
     {
+        Name = name;
+        Day = day;
+        Month = month;
     }
 
     /// <summary>
@@ -36,23 +48,25 @@ public class HolidayDefinition
         DayOfWeek = dayOfWeek;
     }
 
+    public string Name { get; set; }
+
     /// <summary>
     /// Either the day of the month (e.g. the 4th of July), or if <see cref="DayOfWeek" /> is set,
     /// the instance of that day in the month (e.g. the 4th Thursday in November). Will be -1 to
     /// specify the last day in the month (e.g. the last Monday in May).
     /// </summary>
-    public int Day { get; protected set; }
+    public int Day { get; set; }
 
     /// <summary>
     /// The month the holiday falls in.
     /// </summary>
-    public Month Month { get; protected set; }
+    public Month Month { get; set; }
 
     /// <summary>
     /// If the holiday is defined by the day of the week (e.g. the 4th Thursday in November), this
     /// will be set and the <see cref="Day"/> property will specify the number.
     /// </summary>
-    public DayOfWeek? DayOfWeek { get; protected set; }
+    public DayOfWeek? DayOfWeek { get; set; }
 
     /// <summary>
     /// Returns a string representation of when the holiday occurs.

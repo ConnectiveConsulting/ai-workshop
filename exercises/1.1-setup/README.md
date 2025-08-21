@@ -18,7 +18,8 @@ Using the remote VM:
 
 Using your local machine:
 - The latest version of Visual Studio Code
-- .NET 9 SDK (dotnet CLI)
+- .NET 9 SDK
+- .NET 10 SDK preview
 - Node.js (latest LTS version)
 - A GitHub Copilot subscription
 
@@ -28,7 +29,7 @@ Using your local machine:
 
 1. Open MS Remote Desktop (Start > Search > Remote Desktop)
 
-1. In the Computer field enter the IP address of the remote VM assigned to you
+1. In the Computer field enter the IP address or name of the remote VM assigned to you.
 
 1. Click 'Show Options'
 
@@ -46,6 +47,9 @@ Using your local machine:
 
 1. Open Google Chrome and navigate back to these instructions (https://github.com/ConnectiveConsulting/ai-workshop) so you can stay within the browser. **Do not use Microsoft Edge** as Edge requires you to log into a Microsoft account.
 
+1. Keep this browser window open to follow along with the exercise instructions.
+
+<!--
 1. When opening Chrome for the first time click 'Don't sign in' to bypass loading a profile.
 
 1. Click the 'Set as default browser' button to open up settings.
@@ -53,13 +57,16 @@ Using your local machine:
 1. Click the 'Set default' button next to 'Make Google Chrome your default browser'.
 
 ![alt text](image.png)
+-->
 
 ### Step 2: Log into GitHub Copilot
 
 1. Open Visual Studio Code from the desktop shortcut
     - Note we are using Visual Studio *Code*, not full Visual Studio. GitHub Copilot in Visual Studio Code tends to get the latest features before all other IDEs.
 
+<!--
 1. You can close the Windows Subsystem for Linux notification if it is open, or let it close automatically after 60 seconds.
+-->
 
 1. Click the 'Set up Copilot' button on the welcome screen
 
@@ -77,9 +84,9 @@ Using your local machine:
 
 You should now have a fully functional development environment set up for the workshop.
 
-The repository with the exercises has already been cloned to your machine in the C:\Workshop folder.
+This repository has already been cloned to your machine in the C:\Workshop folder.
 
 ---
 
-[Next - GitHub Copilot Basics](../2.1-copilot-basics/README.md)
+[Next: Copilot Basics - Generating Unit Tests](../exercises/2.1-generating-unit-tests/README.md)
 

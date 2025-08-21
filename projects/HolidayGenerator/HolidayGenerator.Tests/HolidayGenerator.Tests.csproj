@@ -18,4 +18,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HolidayGenerator.Console\HolidayGenerator.Console.csproj" />
+  </ItemGroup>
+
 </Project>

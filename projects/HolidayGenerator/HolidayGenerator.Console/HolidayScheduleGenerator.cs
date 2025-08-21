@@ -1,3 +1,5 @@
+namespace HolidayGenerator;
+
 /// <summary>
 /// Generates holiday dates for a given year based on holiday definitions.
 /// Supports both fixed date holidays (e.g., July 4th) and relative weekday holidays
