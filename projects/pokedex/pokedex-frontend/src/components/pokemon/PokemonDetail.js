@@ -1,79 +1,182 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import PokemonService from '../../services/PokemonService';
+import { useSelector, useDispatch } from 'react-redux';
+import { 
+  useGetPokemonByIdQuery, 
+  useUpdatePokemonMutation, 
+  useDeletePokemonMutation 
+} from '../../store/api';
+import {
+  selectFormState,
+  openForm,
+  closeForm,
+  updateFormData,
+  setFormSubmitting,
+  setFormErrors,
+  resetForm,
+  addNotification,
+  openConfirmDialog
+} from '../../store/slices/uiSlice';
 
 const PokemonDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [pokemon, setPokemon] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedPokemon, setEditedPokemon] = useState(null);
+  const dispatch = useDispatch();
+  
+  // RTK Query hooks
+  const {
+    data: pokemon,
+    error,
+    isLoading,
+    isError
+  } = useGetPokemonByIdQuery(id, {
+    skip: !id
+  });
+  
+  const [updatePokemon, { 
+    isLoading: isUpdating, 
+    error: updateError 
+  }] = useUpdatePokemonMutation();
+  
+  const [deletePokemon, { 
+    isLoading: isDeleting 
+  }] = useDeletePokemonMutation();
 
-  const fetchPokemon = async () => {
-    try {
-      setLoading(true);
-      const data = await PokemonService.getPokemonById(id);
-      setPokemon(data);
-      setEditedPokemon(data);
-      setError(null);
-    } catch (err) {
-      console.error(`Error fetching Pokemon with ID ${id}:`, err);
-      setError('Failed to load Pokemon details. Please try again later.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  // UI state from Redux - using a form named with the pokemon ID for uniqueness
+  const formName = `editPokemon_${id}`;
+  const formState = useSelector(selectFormState(formName));
+  const isEditing = formState?.isOpen || false;
+  const isSubmitting = formState?.isSubmitting || isUpdating;
+  const formData = useMemo(() => formState?.data || {}, [formState?.data]);
+  const formErrors = formState?.errors || {};
 
+  // Initialize form data when pokemon loads
   useEffect(() => {
-    fetchPokemon();
-  }, [id]);
+    if (pokemon && isEditing && !formData.name) {
+      dispatch(updateFormData({ 
+        formName, 
+        field: 'name', 
+        value: pokemon.name || ''
+      }));
+      dispatch(updateFormData({ 
+        formName, 
+        field: 'type', 
+        value: pokemon.type || ''
+      }));
+      dispatch(updateFormData({ 
+        formName, 
+        field: 'imageUrl', 
+        value: pokemon.imageUrl || ''
+      }));
+    }
+  }, [pokemon, isEditing, formData.name, dispatch, formName]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = useCallback((e) => {
     const { name, value } = e.target;
-    setEditedPokemon({
-      ...editedPokemon,
-      [name]: value
-    });
-  };
+    dispatch(updateFormData({ 
+      formName, 
+      field: name, 
+      value 
+    }));
+  }, [dispatch, formName]);
 
-  const handleSubmit = async (e) => {
+  const handleStartEdit = useCallback(() => {
+    if (pokemon) {
+      dispatch(openForm({ 
+        formName,
+        initialData: {
+          name: pokemon.name || '',
+          type: pokemon.type || '',
+          imageUrl: pokemon.imageUrl || ''
+        }
+      }));
+    }
+  }, [dispatch, formName, pokemon]);
+
+  const handleCancelEdit = useCallback(() => {
+    dispatch(closeForm(formName));
+    dispatch(resetForm(formName));
+  }, [dispatch, formName]);
+
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
+    
+    // Basic validation
+    const errors = {};
+    if (!formData.name?.trim()) errors.name = 'Name is required';
+    if (!formData.type?.trim()) errors.type = 'Type is required';
+    
+    if (Object.keys(errors).length > 0) {
+      dispatch(setFormErrors({ formName, errors }));
+      return;
+    }
+
     try {
-      setLoading(true);
-      await PokemonService.updatePokemon(id, editedPokemon);
-      setPokemon(editedPokemon);
-      setIsEditing(false);
-      setError(null);
+      dispatch(setFormSubmitting({ formName, isSubmitting: true }));
+      
+      await updatePokemon({
+        id: parseInt(id),
+        name: formData.name.trim(),
+        type: formData.type.trim(),
+        imageUrl: formData.imageUrl?.trim() || undefined
+      }).unwrap();
+      
+      // Success - close form
+      dispatch(closeForm(formName));
+      dispatch(resetForm(formName));
+      dispatch(addNotification({
+        type: 'success',
+        title: 'Success!',
+        message: `${formData.name} has been updated successfully.`
+      }));
+      
     } catch (err) {
-      console.error(`Error updating Pokemon with ID ${id}:`, err);
-      setError('Failed to update Pokemon. Please try again.');
-    } finally {
-      setLoading(false);
+      console.error('Error updating Pokemon:', err);
+      dispatch(setFormErrors({ 
+        formName, 
+        errors: { submit: 'Failed to update Pokemon. Please try again.' }
+      }));
+      dispatch(addNotification({
+        type: 'error',
+        title: 'Error',
+        message: 'Failed to update Pokemon. Please try again.'
+      }));
     }
-  };
+  }, [dispatch, updatePokemon, formData, formName, id]);
 
-  const handleDelete = async () => {
-    if (window.confirm('Are you sure you want to delete this Pokemon?')) {
-      try {
-        setLoading(true);
-        await PokemonService.deletePokemon(id);
-        navigate('/pokemon');
-      } catch (err) {
-        console.error(`Error deleting Pokemon with ID ${id}:`, err);
-        setError('Failed to delete Pokemon. Please try again.');
-        setLoading(false);
+  const handleDelete = useCallback(() => {
+    if (!pokemon) return;
+    
+    dispatch(openConfirmDialog({
+      title: 'Delete Pokemon',
+      message: `Are you sure you want to delete ${pokemon.name}? This action cannot be undone.`,
+      confirmText: 'Delete',
+      cancelText: 'Cancel',
+      type: 'danger',
+      onConfirm: async () => {
+        try {
+          await deletePokemon(parseInt(id)).unwrap();
+          dispatch(addNotification({
+            type: 'success',
+            title: 'Success!',
+            message: `${pokemon.name} has been deleted successfully.`
+          }));
+          navigate('/pokemon');
+        } catch (err) {
+          console.error('Error deleting Pokemon:', err);
+          dispatch(addNotification({
+            type: 'error',
+            title: 'Error',
+            message: 'Failed to delete Pokemon. Please try again.'
+          }));
+        }
       }
-    }
-  };
+    }));
+  }, [dispatch, deletePokemon, pokemon, id, navigate]);
 
-  if (loading) return <div className="loading">Loading Pokémon details...</div>;
-  if (error) return <div className="error">Error: {error}</div>;
-  if (!pokemon) return <div className="not-found">Pokémon not found</div>;
-
-  if (loading) return <div className="loading">Loading Pokémon details...</div>;
-  if (error) return <div className="error">{error}</div>;
+  // Loading and error states
+  if (isLoading) return <div className="loading">Loading Pokémon details...</div>;
+  if (isError) return <div className="error">Error: {error?.data?.message || error?.message || 'Failed to load Pokemon details'}</div>;
   if (!pokemon) return <div className="not-found">Pokémon not found</div>;
 
   return (
@@ -81,6 +184,13 @@ const PokemonDetail = () => {
       {isEditing ? (
         <div className="edit-form-container">
           <h2>Edit Pokémon</h2>
+          
+          {(formErrors.submit || updateError) && (
+            <div className="error-message">
+              {formErrors.submit || updateError?.data?.message || updateError?.message || 'An error occurred'}
+            </div>
+          )}
+          
           <form onSubmit={handleSubmit} className="pokemon-form">
             <div className="form-group">
               <label htmlFor="name">Name:</label>
@@ -88,10 +198,12 @@ const PokemonDetail = () => {
                 type="text"
                 id="name"
                 name="name"
-                value={editedPokemon.name}
+                value={formData.name || ''}
                 onChange={handleInputChange}
                 required
+                disabled={isSubmitting}
               />
+              {formErrors.name && <div className="field-error">{formErrors.name}</div>}
             </div>
             <div className="form-group">
               <label htmlFor="type">Type:</label>
@@ -99,10 +211,12 @@ const PokemonDetail = () => {
                 type="text"
                 id="type"
                 name="type"
-                value={editedPokemon.type}
+                value={formData.type || ''}
                 onChange={handleInputChange}
                 required
+                disabled={isSubmitting}
               />
+              {formErrors.type && <div className="field-error">{formErrors.type}</div>}
             </div>
             <div className="form-group">
               <label htmlFor="imageUrl">Image URL:</label>
@@ -110,21 +224,21 @@ const PokemonDetail = () => {
                 type="text"
                 id="imageUrl"
                 name="imageUrl"
-                value={editedPokemon.imageUrl}
+                value={formData.imageUrl || ''}
                 onChange={handleInputChange}
+                disabled={isSubmitting}
               />
+              {formErrors.imageUrl && <div className="field-error">{formErrors.imageUrl}</div>}
             </div>
             <div className="form-actions">
-              <button type="submit" className="btn btn-success">
-                Save Changes
+              <button type="submit" className="btn btn-success" disabled={isSubmitting}>
+                {isSubmitting ? 'Saving...' : 'Save Changes'}
               </button>
               <button
                 type="button"
                 className="btn btn-secondary"
-                onClick={() => {
-                  setIsEditing(false);
-                  setEditedPokemon(pokemon);
-                }}
+                onClick={handleCancelEdit}
+                disabled={isSubmitting}
               >
                 Cancel
               </button>
@@ -167,16 +281,20 @@ const PokemonDetail = () => {
             </div>
           </div>
           
+          {(isUpdating || isDeleting) && <div className="loading">Processing...</div>}
+          
           <div className="actions">
             <button
-              onClick={() => setIsEditing(true)}
+              onClick={handleStartEdit}
               className="btn btn-primary"
+              disabled={isUpdating || isDeleting}
             >
               Edit
             </button>
             <button
               onClick={handleDelete}
               className="btn btn-danger"
+              disabled={isUpdating || isDeleting}
             >
               Delete
             </button>
