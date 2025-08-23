@@ -26,6 +26,9 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/in
 # Install Visual Studio Code
 choco install vscode -y --ignore-checksums
 
+# Install SQL Server Management Studio
+#choco install sql-server-management-studio -y --ignore-checksums
+
 # Install Chrome and make it the default browser
 choco install googlechrome -y --ignore-checksums
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http\UserChoice" -Name "ProgId" -Value "ChromeHTML"
@@ -57,8 +60,14 @@ $shortcut = $WScriptShell.CreateShortcut($shortcutPath)
 $shortcut.TargetPath = $targetPath
 $shortcut.Save()
 
-# Init projects
+# Init/Build projects
 Set-Location C:\Workshop\projects\checklist
 npm i
 Set-Location C:\Workshop\projects\pokedex\pokedex-frontend
 npm i
+Set-Location C:\Workshop\exercises\4.1-mcp\mssql-mcp-dotnet\MssqlMcp
+dotnet build
+
+# Execute database SQL script
+Install-Module -Name SqlServer -Confirm
+Invoke-Sqlcmd -InputFile "C:\Workshop\infrastructure\vms\database.sql" -ServerInstance '(localdb)\MSSQLLocalDB'

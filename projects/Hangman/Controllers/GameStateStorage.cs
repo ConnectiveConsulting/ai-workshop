@@ -1,35 +1,34 @@
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Options;
+
+using Microsoft.AspNetCore.Http;
 using Project.Models;
 
 namespace Project.Controllers
 {
     public class GameStateStorage
     {
-        private const string CacheKey = "HangmanGame";
-        private MemoryCache _cache;
+        private const string SessionKey = "HangmanGame";
+        private readonly ISession _session;
 
-        public GameStateStorage()
+        public GameStateStorage(IHttpContextAccessor httpContextAccessor)
         {
-            _cache = new MemoryCache(Options.Create(new MemoryCacheOptions()));
+            _session = httpContextAccessor.HttpContext.Session;
         }
 
         public void SetGameState(HangmanGame value)
         {
-            _cache.Set(CacheKey, System.Text.Json.JsonSerializer.Serialize(value));
+            var json = System.Text.Json.JsonSerializer.Serialize(value);
+            _session.SetString(SessionKey, json);
         }
 
         public HangmanGame GetGameState()
         {
-            var strValue = _cache.Get<string>(CacheKey);
-
+            var strValue = _session.GetString(SessionKey);
             if (string.IsNullOrEmpty(strValue))
             {
                 var newValue = new HangmanGame();
                 SetGameState(newValue);
                 return newValue;
             }
-
             var value = System.Text.Json.JsonSerializer.Deserialize<HangmanGame>(strValue);
             return value ?? new HangmanGame();
         }

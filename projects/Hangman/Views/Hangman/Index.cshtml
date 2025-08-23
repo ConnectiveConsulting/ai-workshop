@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="/css/site.css" />
 <div class="hangman-container">
     <h1>Hangman</h1>
+    <pre class="hangman-ascii">@Model.HangmanAsciiArt</pre>
     <div class="word">@Model.GetMaskedWord()</div>
     <div class="guesses">
         Guessed: @string.Join(", ", Model.Guesses)

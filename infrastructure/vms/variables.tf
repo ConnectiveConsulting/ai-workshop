@@ -25,6 +25,11 @@ variable "vm_name_prefix" {
   default     = "vs2022-vm"
 }
 
+variable "dns_name_label" {
+  description = "DNS name label for the VMs"
+  type        = string
+}
+
 variable "vm_size" {
   description = "Size of the VM"
   type        = string

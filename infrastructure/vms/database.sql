@@ -1,5 +1,9 @@
--- Pokedex SQL Server Database Schema
--- Created based on Pokedex.Core.Models
+CREATE DATABASE PokemonDB;
+GO
+
+USE PokemonDB;
+GO
+
 
 -- Drop tables if they exist to allow for clean recreation
 IF OBJECT_ID('dbo.Capture', 'U') IS NOT NULL
@@ -8,13 +12,23 @@ IF OBJECT_ID('dbo.Pokemon', 'U') IS NOT NULL
     DROP TABLE dbo.Pokemon;
 IF OBJECT_ID('dbo.Trainer', 'U') IS NOT NULL
     DROP TABLE dbo.Trainer;
+IF OBJECT_ID('dbo.PokemonType', 'U') IS NOT NULL
+    DROP TABLE dbo.PokemonType;
+    
+-- Create Pokemon type table
+CREATE TABLE dbo.PokemonType (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name VARCHAR(50) NOT NULL UNIQUE,
+    Description VARCHAR(255) NOT NULL
+);
 
 -- Create Pokemon table
 CREATE TABLE dbo.Pokemon (
     Id INT PRIMARY KEY IDENTITY(1,1),
     Name VARCHAR(100) NOT NULL,
-    Type VARCHAR(50) NOT NULL,
-    ImageUrl VARCHAR(255) NOT NULL
+    Description VARCHAR (500) NOT NULL,
+    TypeId int NOT NULL,
+    CONSTRAINT FK_Pokemon_PokemonType FOREIGN KEY (TypeId) REFERENCES dbo.PokemonType(Id) ON DELETE CASCADE
 );
 
 -- Create Trainer table
@@ -38,12 +52,6 @@ CREATE TABLE dbo.Capture (
         REFERENCES dbo.Trainer(Id) ON DELETE CASCADE
 );
 
-CREATE TABLE dbo.PokemonType (
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    Name VARCHAR(50) NOT NULL UNIQUE,
-    Description VARCHAR(255) NOT NULL
-);
-
 INSERT INTO dbo.PokemonType (Name, Description) VALUES
 ('Fire', 'Fire-type Pokémon are known for their fiery abilities.'),
 ('Water', 'Water-type Pokémon are adept at using water-based attacks.'),
@@ -51,8 +59,4 @@ INSERT INTO dbo.PokemonType (Name, Description) VALUES
 ('Electric', 'Electric-type Pokémon can generate and manipulate electricity.'),
 ('Psychic', 'Psychic-type Pokémon possess mental powers and abilities.');
 
--- Add indexes to improve query performance
-CREATE INDEX IX_Capture_PokemonId ON dbo.Capture(PokemonId);
-CREATE INDEX IX_Capture_TrainerId ON dbo.Capture(TrainerId);
-CREATE INDEX IX_Pokemon_Name ON dbo.Pokemon(Name);
-CREATE INDEX IX_Trainer_Name ON dbo.Trainer(Name);
+GO

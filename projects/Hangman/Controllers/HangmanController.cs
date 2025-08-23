@@ -5,11 +5,11 @@ namespace Project.Controllers
 {
     public class HangmanController : Controller
     {
-        private static GameStateStorage _stateStorage;
+        private readonly GameStateStorage _stateStorage;
 
-        static HangmanController()
+        public HangmanController(GameStateStorage stateStorage)
         {
-            _stateStorage = new GameStateStorage();
+            _stateStorage = stateStorage;
         }
 
         public IActionResult Index()
