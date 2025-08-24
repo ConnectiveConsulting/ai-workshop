@@ -67,7 +67,7 @@ export const api = createApi({
       query: ({ id, ...pokemonData }) => ({
         url: `/Pokemon/${id}`,
         method: 'PUT',
-        body: pokemonData,
+        body: { id, ...pokemonData },
       }),
       invalidatesTags: (result, error, { id }) => [
         { type: 'Pokemon', id },

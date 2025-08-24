@@ -4,7 +4,8 @@ import { Header } from './components/layout';
 import {
   HomePage,
   PokemonListPage,
-  PokemonDetailPage,
+  PokemonCreatePage,
+  PokemonEditPage,
   TrainerListPage,
   TrainerDetailPage,
   CaptureManagerPage
@@ -19,8 +20,9 @@ function App() {
         <main className="container">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/pokemon/create" element={<PokemonCreatePage />} />
+            <Route path="/pokemon/:id/edit" element={<PokemonEditPage />} />
             <Route path="/pokemon" element={<PokemonListPage />} />
-            <Route path="/pokemon/:id" element={<PokemonDetailPage />} />
             <Route path="/trainers" element={<TrainerListPage />} />
             <Route path="/trainers/:id" element={<TrainerDetailPage />} />
             <Route path="/captures" element={<CaptureManagerPage />} />

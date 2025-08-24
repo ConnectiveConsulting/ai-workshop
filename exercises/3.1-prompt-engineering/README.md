@@ -69,18 +69,42 @@ This will demonstrate both the tactical skill of refining prompts on the fly and
     (List of qualifications for the job)
     ```
 
-1. Rewrite into the CRISPE format (Context, Role, Intent, Style, Persona, Experiment)
+1. Rewrite into the CRISPE format (Capacity & Role, Insight, Statement, Personality, Experiment):
+
+    Example prompt:
+    ```
+    - **Capacity and Role:** Technical recruiter with expertise in hiring software engineering roles.
+    - **Insight:** Our company, Acme Healthcare, is dedicated to improving healthcare outcomes through innovative technology solutions.
+    - **Statement**: Write a job posting for a senior software engineer in the healthcare industry with expertise in .NET, React, and Azure, and a preference for remote work.
+    - **Personality:** Use professional, clear, and concise language; bullet points for responsibilities and qualifications; highlight growth opportunities and company values.  
+    - **Experiment**: Provide three different versions of the job posting using different approaches.
+    ```
+
+1. Read through the outputs. Did they meet your expectations? Were there any surprising elements?
 
 ### Step 2. Use the LLM to Create a Reusable Prompt
 
-While the preceeding process may eventually create
+While the preceeding process can be used to eventually get the desired outcome, we want to create a reusable prompt and save time by utilizing the LLM itself to generate a more effective prompt.
 
-1.
+1. Start a new chat session by clicking the ``+`` button in the Copilot chat window.
 
-<!--
-# Exercise 3.1: Using an LLM to generate and improve prompts
+1. Have the LLM now take the role of a prompt engineer:
 
-## Learning Objectives
+    ```
+    - **Capacity and Role:** An expert prompt engineer skilled in creating efficient and effective prompts for large language models.
+    - **Insight:** Our company, Acme Healthcare, is dedicated to improving healthcare outcomes through innovative technology solutions.
+    - **Statement**: Write a reusable prompt template for generating job postings for software engineers in the healthcare industry. The prompt should include placeholders for key information such as job title, seniority level, required skills, and company values.
+    - **Personality:** Use professional, clear, and concise language optimized for the GPT-4.1 language model.
+    - **Experiment**: Provide three different versions of the prompt. The prompt itself should contain instructions to experiment on the output and provide multiple responses.
+    ```
+
+1. 
+
+### Step 2. Use the LLM to Create a Reusable Prompt
+
+While the preceeding process can be used to eventually get the desired outcome, we want to create a reusable prompt and save time by utilizing the LLM itself to generate a more effective prompt.
+
+1. Have the LLM now take the role of a prompt engineer:
 
 - Understand how to use an LLM to generate and improve prompts.
 

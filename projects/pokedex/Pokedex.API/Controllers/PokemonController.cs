@@ -83,8 +83,13 @@ namespace Pokedex.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePokemon(int id, PokemonDto pokemonDto)
         {
+            Console.WriteLine($"Received PUT request for Pokemon ID: {id}");
+            Console.WriteLine($"Request body Pokemon ID: {pokemonDto.Id}");
+            Console.WriteLine($"Request body data: Name={pokemonDto.Name}, Type={pokemonDto.Type}, ImageUrl={pokemonDto.ImageUrl}");
+            
             if (id != pokemonDto.Id)
             {
+                Console.WriteLine($"ID mismatch: URL ID {id} != Body ID {pokemonDto.Id}");
                 return BadRequest();
             }
 

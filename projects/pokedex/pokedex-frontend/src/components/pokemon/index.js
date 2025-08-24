@@ -1,5 +1,5 @@
 // Pokemon components index file
 import PokemonList from './PokemonList';
-import PokemonDetail from './PokemonDetail';
+import PokemonEdit from './PokemonEdit';
 
-export { PokemonList, PokemonDetail };
+export { PokemonList, PokemonEdit };

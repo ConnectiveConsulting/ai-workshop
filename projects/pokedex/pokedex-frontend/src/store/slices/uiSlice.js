@@ -33,6 +33,16 @@ const initialState = {
       },
       errors: {},
     },
+    editPokemon: {
+      isOpen: false,
+      isSubmitting: false,
+      data: {
+        name: '',
+        type: '',
+        imageUrl: '',
+      },
+      errors: {},
+    },
     newTrainer: {
       isOpen: false,
       isSubmitting: false,
