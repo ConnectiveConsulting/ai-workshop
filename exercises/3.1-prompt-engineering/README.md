@@ -88,25 +88,22 @@ While the preceeding process can be used to eventually get the desired outcome, 
 
 1. Start a new chat session by clicking the ``+`` button in the Copilot chat window.
 
-1. Have the LLM now take the role of a prompt engineer:
+1. Have the LLM now take the role of a prompt engineer. We will create a simple prompt telling the LLM to create the prompt for us.
 
+    Prompt:
     ```
-    - **Capacity and Role:** An expert prompt engineer skilled in creating efficient and effective prompts for large language models.
-    - **Insight:** Our company, Acme Healthcare, is dedicated to improving healthcare outcomes through innovative technology solutions.
-    - **Statement**: Write a reusable prompt template for generating job postings for software engineers in the healthcare industry. The prompt should include placeholders for key information such as job title, seniority level, required skills, and company values.
-    - **Personality:** Use professional, clear, and concise language optimized for the GPT-4.1 language model.
-    - **Experiment**: Provide three different versions of the prompt. The prompt itself should contain instructions to experiment on the output and provide multiple responses.
+    You are an expert prompt engineer skilled in creating efficient and effective prompts for large language models.
+    Write a prompt for generating job postings for software engineers roles.
+    Ask me questions until you have enough information to create a detailed and effective prompt.
     ```
 
-1. 
+1. Answer the questions
 
-### Step 2. Use the LLM to Create a Reusable Prompt
-
-While the preceeding process can be used to eventually get the desired outcome, we want to create a reusable prompt and save time by utilizing the LLM itself to generate a more effective prompt.
-
-1. Have the LLM now take the role of a prompt engineer:
-
-- Understand how to use an LLM to generate and improve prompts.
+    - Company name, description, and mission: Acme Healthcare, is dedicated to improving healthcare outcomes through innovative technology solutions.
+    - Job title and seniority level: Senior Software Engineer
+    - Required skills and technologies: .NET, React, Azure
+    - Key responsibilities: Develop and maintain healthcare applications, collaborate with cross-functional teams, ensure code quality and performance.
+    - Preferred work location: Remote
 
 ## Overview
 

@@ -54,25 +54,33 @@ While we could hand write our prompts with all instructions for each new feature
 
 Furthermore, while we could write these playbooks by hand, it's more efficient to use the GitHub Copilot chat to help us generate a first draft of them.
 
-1. 
+1. In the GitHub Copilot chat window, click the gear icon and select "Prompt Files"
 
-1.
-```
-Analyze the frontend code for this app in the pokedex-frontend folder to generate or update the `.github/prompts/frontend-crud-pages.prompt.md` file which will be used as a playbook by AI coding agents to implement the UI for CRUD pages in this app.
+![alt text](image-1.png)
 
-Focus on the general process that, when combined with a user's prompt, will create all of the files needed for a working list and edit pages given existing API endpoints.
+1. Start a new chat session and enter the following prompt:
 
-Read more about GitHub Copilot prompt files here: https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions#enabling-and-using-prompt-files
+    ```
+    Analyze the frontend code for this app in the pokedex-frontend folder to generate or update the `.github/prompts/frontend-crud-pages.prompt.md` file which will be used as a playbook by AI coding agents to implement the UI for CRUD pages in this app.
 
-- If `.github/prompts/frontend-crud-pages.prompt.md` exists, merge intelligently - preserve valuable content while updating outdated sections
-- Write concise, actionable, step-by-step instructions using markdown structure
-- Avoid generic advice ("write tests", "handle errors") - focus on THIS project's specific approaches
-- Document only discoverable patterns, not aspirational practices
-- Reference key files/directories that exemplify important patterns
-- Use the /pokedex-frontend/src/pages/PokemonDetailPage.js and /pokedex-frontend/src/pages/PokemonListPage.js files and their corresponding components as an example.
-- Include instructions for asking the user clarifying questions. e.g. Prompt the user for the location of the API controller that will provide the data for these pages if not specified.
-```
+    Focus on the general process that, when combined with a user's prompt, will create all of the files needed for a working list and edit pages given existing API endpoints.
 
+    Read more about GitHub Copilot prompt files here: https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions#enabling-and-using-prompt-files
+
+    - If `.github/prompts/frontend-crud-pages.prompt.md` exists, merge intelligently - preserve valuable content while updating outdated sections
+    - Write concise, actionable, step-by-step instructions using markdown structure
+    - Avoid generic advice ("write tests", "handle errors") - focus on THIS project's specific approaches
+    - Document only discoverable patterns, not aspirational practices
+    - Reference key files/directories that exemplify important patterns
+    - Use the /pokedex-frontend/src/pages/PokemonDetailPage.js and /pokedex-frontend/src/pages/PokemonListPage.js files and their corresponding components as an example.
+    - Include instructions for asking the user clarifying questions. e.g. Prompt the user for the location of the API controller that will provide the data for these pages if not specified.
+    ```
+
+1. Select "+ New Prompt File"
+
+1. Select the ".github/prompts" folder
+
+1. Enter "front-end-feature" for the prompt name
 
 ```
 Analyze the backend code for this app in the /Pokedex.API, /Pokedex.Core, and /Pokedex.Infrastructure folders to generate or update the `.github/prompts/new-backend-crud-operations.prompt.md` file which will be used as a playbook by AI coding agents to implement the API for CRUD operations in this app.
