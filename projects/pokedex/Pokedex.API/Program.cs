@@ -19,12 +19,10 @@ builder.Services.AddDbContext<PokemonDbContext>(options =>
 // Register repositories
 builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
 builder.Services.AddScoped<ITrainerRepository, TrainerRepository>();
-builder.Services.AddScoped<ICaptureRepository, CaptureRepository>();
 
 // Register services
 builder.Services.AddScoped<IPokemonService, PokemonService>();
 builder.Services.AddScoped<ITrainerService, TrainerService>();
-builder.Services.AddScoped<ICaptureService, CaptureService>();
 
 // Configure CORS
 builder.Services.AddCors(options =>

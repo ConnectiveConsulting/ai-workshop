@@ -7,7 +7,6 @@ import TrainerListPage from './TrainerListPage';
 import TrainerDetailPage from './TrainerDetailPage';
 import TrainerCreatePage from './TrainerCreatePage';
 import TrainerEditPage from './TrainerEditPage';
-import CaptureManagerPage from './CaptureManagerPage';
 
 export {
   HomePage,
@@ -17,6 +16,5 @@ export {
   TrainerListPage,
   TrainerDetailPage,
   TrainerCreatePage,
-  TrainerEditPage,
-  CaptureManagerPage
+  TrainerEditPage
 };

@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import { api } from './api';
 import pokemonSlice from './slices/pokemonSlice';
 import trainerSlice from './slices/trainerSlice';
-import captureSlice from './slices/captureSlice';
 import uiSlice from './slices/uiSlice';
 
 export const store = configureStore({
@@ -13,7 +12,6 @@ export const store = configureStore({
     // Feature slices - fully implemented with createEntityAdapter
     pokemon: pokemonSlice,
     trainer: trainerSlice,
-    capture: captureSlice,
     ui: uiSlice,
   },
   

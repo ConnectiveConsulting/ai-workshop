@@ -3,11 +3,9 @@ import { store } from './store';
 import { 
   addPokemon, 
   addTrainer, 
-  addCapture,
   setLoading,
   selectAllPokemon,
   selectAllTrainers,
-  selectAllCaptures,
   selectIsLoading
 } from './index';
 
@@ -20,7 +18,6 @@ export const testReduxImplementation = () => {
   console.log('Initial state:', {
     pokemon: initialState.pokemon,
     trainer: initialState.trainer,
-    capture: initialState.capture,
     ui: initialState.ui,
     api: initialState.api
   });
@@ -52,16 +49,6 @@ export const testReduxImplementation = () => {
   store.dispatch(addTrainer(testTrainer));
   console.log('Added Trainer:', selectAllTrainers(store.getState()));
   
-  // Test Capture slice
-  const testCapture = {
-    pokemonId: 1,
-    trainerId: 1,
-    captureDate: new Date().toISOString()
-  };
-  
-  store.dispatch(addCapture(testCapture));
-  console.log('Added Capture:', selectAllCaptures(store.getState()));
-  
   // Test UI slice
   store.dispatch(setLoading(true));
   console.log('Loading state:', selectIsLoading(store.getState()));
@@ -74,7 +61,6 @@ export const testReduxImplementation = () => {
   return {
     pokemon: selectAllPokemon(store.getState()),
     trainers: selectAllTrainers(store.getState()),
-    captures: selectAllCaptures(store.getState()),
     isLoading: selectIsLoading(store.getState())
   };
 };

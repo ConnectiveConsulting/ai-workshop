@@ -58,9 +58,7 @@ const TrainerEdit = ({ trainerId }) => {
         formName,
         initialData: {
           name: existingTrainer.name || '',
-          region: existingTrainer.region || '',
-          email: existingTrainer.email || '',
-          phone: existingTrainer.phone || ''
+          region: existingTrainer.region || ''
         }
       }));
     } else if (!isEditMode) {
@@ -70,9 +68,7 @@ const TrainerEdit = ({ trainerId }) => {
         formName,
         initialData: {
           name: '',
-          region: '',
-          email: '',
-          phone: ''
+          region: ''
         }
       }));
     }
@@ -105,9 +101,7 @@ const TrainerEdit = ({ trainerId }) => {
       
       const trainerData = {
         name: formData.name.trim(),
-        region: formData.region.trim(),
-        email: formData.email?.trim() || undefined,
-        phone: formData.phone?.trim() || undefined
+        region: formData.region.trim()
       };
 
       if (isEditMode) {
@@ -236,33 +230,6 @@ const TrainerEdit = ({ trainerId }) => {
             {formErrors.region && <div className="field-error">{formErrors.region}</div>}
           </div>
           
-          <div className="form-group">
-            <label htmlFor="email">Email (Optional):</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email || ''}
-              onChange={handleInputChange}
-              placeholder="trainer@example.com"
-              disabled={isSubmitting}
-            />
-            {formErrors.email && <div className="field-error">{formErrors.email}</div>}
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="phone">Phone (Optional):</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone || ''}
-              onChange={handleInputChange}
-              placeholder="(555) 123-4567"
-              disabled={isSubmitting}
-            />
-            {formErrors.phone && <div className="field-error">{formErrors.phone}</div>}
-          </div>
           
           <div className="form-actions">
             <button type="submit" className="btn btn-success" disabled={isSubmitting}>

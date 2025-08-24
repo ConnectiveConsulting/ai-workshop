@@ -1,12 +1,11 @@
 # Pokedex App
 
-A simple web application to manage Pokémon types, trainers, and the Pokémon they have captured.
+A simple web application to manage Pokémon types and trainers.
 
 ## Purpose
 This app provides an easy-to-use interface for:
 - Viewing and managing Pokémon
 - Managing trainers
-- Tracking which Pokémon have been captured by which trainers
 
 ## Getting Started
 1. **Frontend:**

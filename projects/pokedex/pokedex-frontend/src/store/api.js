@@ -11,7 +11,7 @@ export const api = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Pokemon', 'Trainer', 'Capture'],
+  tagTypes: ['Pokemon', 'Trainer'],
   endpoints: (builder) => ({
     // Pokemon endpoints
     getAllPokemon: builder.query({
@@ -96,7 +96,6 @@ export const api = createApi({
       invalidatesTags: (result, error, id) => [
         { type: 'Pokemon', id },
         'Pokemon',
-        'Capture', // Also invalidate captures since pokemon relationships may change
       ],
     }),
     
@@ -179,106 +178,9 @@ export const api = createApi({
       invalidatesTags: (result, error, id) => [
         { type: 'Trainer', id },
         'Trainer',
-        'Capture', // Also invalidate captures since trainer relationships may change
       ],
     }),
     
-    // Capture endpoints
-    getAllCaptures: builder.query({
-      query: () => '/Capture',
-      providesTags: ['Capture'],
-    }),
-    
-    getCaptureByIds: builder.query({
-      query: ({ pokemonId, trainerId }) => `/Capture/${pokemonId}/${trainerId}`,
-      providesTags: (result, error, { pokemonId, trainerId }) => [
-        { type: 'Capture', id: `${pokemonId}-${trainerId}` },
-      ],
-    }),
-    
-    getCapturesByTrainerId: builder.query({
-      query: (trainerId) => `/Capture/trainer/${trainerId}`,
-      providesTags: (result, error, trainerId) => [
-        { type: 'Capture', id: `trainer-${trainerId}` },
-      ],
-    }),
-    
-    createCapture: builder.mutation({
-      query: (captureData) => ({
-        url: '/Capture',
-        method: 'POST',
-        body: captureData,
-      }),
-      invalidatesTags: ['Capture'],
-      async onQueryStarted(captureData, { dispatch, queryFulfilled }) {
-        const patchResult = dispatch(
-          api.util.updateQueryData('getAllCaptures', undefined, (draft) => {
-            const tempCapture = {
-              ...captureData,
-              captureDate: captureData.captureDate || new Date().toISOString(),
-              __isOptimistic: true,
-            };
-            draft.push(tempCapture);
-          })
-        );
-        try {
-          const { data: newCapture } = await queryFulfilled;
-          dispatch(
-            api.util.updateQueryData('getAllCaptures', undefined, (draft) => {
-              const index = draft.findIndex(c => c.__isOptimistic);
-              if (index !== -1) {
-                draft[index] = newCapture;
-                delete draft[index].__isOptimistic;
-              }
-            })
-          );
-          // Also update trainer-specific captures if cached
-          if (captureData.trainerId) {
-            dispatch(
-              api.util.updateQueryData('getCapturesByTrainerId', captureData.trainerId, (draft) => {
-                draft.push(newCapture);
-              })
-            );
-          }
-        } catch {
-          patchResult.undo();
-        }
-      },
-    }),
-    
-    deleteCapture: builder.mutation({
-      query: ({ pokemonId, trainerId }) => ({
-        url: `/Capture/${pokemonId}/${trainerId}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: (result, error, { pokemonId, trainerId }) => [
-        { type: 'Capture', id: `${pokemonId}-${trainerId}` },
-        { type: 'Capture', id: `trainer-${trainerId}` },
-        'Capture',
-      ],
-      async onQueryStarted({ pokemonId, trainerId }, { dispatch, queryFulfilled }) {
-        // Optimistically remove from all captures
-        const patchResult1 = dispatch(
-          api.util.updateQueryData('getAllCaptures', undefined, (draft) => {
-            return draft.filter(c => !(c.pokemonId === pokemonId && c.trainerId === trainerId));
-          })
-        );
-        
-        // Optimistically remove from trainer captures
-        const patchResult2 = dispatch(
-          api.util.updateQueryData('getCapturesByTrainerId', trainerId, (draft) => {
-            return draft.filter(c => c.pokemonId !== pokemonId);
-          })
-        );
-        
-        try {
-          await queryFulfilled;
-        } catch {
-          patchResult1.undo();
-          patchResult2.undo();
-        }
-      },
-    }),
   }),
 });
 
@@ -297,13 +199,6 @@ export const {
   useCreateTrainerMutation,
   useUpdateTrainerMutation,
   useDeleteTrainerMutation,
-  
-  // Capture hooks
-  useGetAllCapturesQuery,
-  useGetCaptureByIdsQuery,
-  useGetCapturesByTrainerIdQuery,
-  useCreateCaptureMutation,
-  useDeleteCaptureMutation,
 } = api;
 
 export default api;

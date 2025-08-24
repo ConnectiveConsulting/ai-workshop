@@ -9,8 +9,7 @@ import {
   TrainerListPage,
   TrainerDetailPage,
   TrainerCreatePage,
-  TrainerEditPage,
-  CaptureManagerPage
+  TrainerEditPage
 } from './pages';
 import './App.css';
 
@@ -29,7 +28,6 @@ function App() {
             <Route path="/trainers/create" element={<TrainerCreatePage />} />
             <Route path="/trainers/:id/edit" element={<TrainerEditPage />} />
             <Route path="/trainers/:id" element={<TrainerDetailPage />} />
-            <Route path="/captures" element={<CaptureManagerPage />} />
           </Routes>
         </main>
         <footer className="footer">

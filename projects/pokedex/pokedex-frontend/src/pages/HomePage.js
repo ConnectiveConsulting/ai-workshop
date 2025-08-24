@@ -21,12 +21,6 @@ const HomePage = () => {
           <p>Meet the trainers from different regions</p>
           <Link to="/trainers" className="btn btn-primary">View Trainers</Link>
         </div>
-        
-        <div className="feature-card">
-          <h2>Captures</h2>
-          <p>Manage Pokémon captures by trainers</p>
-          <Link to="/captures" className="btn btn-primary">Manage Captures</Link>
-        </div>
       </div>
     </div>
   );

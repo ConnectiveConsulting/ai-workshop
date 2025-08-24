@@ -12,5 +12,4 @@ export * from './api';
 // Export slice actions and selectors
 export * from './slices/pokemonSlice';
 export * from './slices/trainerSlice';
-export * from './slices/captureSlice';
 export * from './slices/uiSlice';

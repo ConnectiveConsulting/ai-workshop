@@ -11,7 +11,6 @@ const initialState = {
   modals: {
     pokemonDetail: false,
     trainerDetail: false,
-    captureForm: false,
     confirmDelete: false,
     pokemonForm: false,
     trainerForm: false,
@@ -62,16 +61,6 @@ const initialState = {
         region: '',
         email: '',
         phone: '',
-      },
-      errors: {},
-    },
-    captureForm: {
-      isOpen: false,
-      isSubmitting: false,
-      data: {
-        pokemonId: null,
-        trainerId: null,
-        captureDate: new Date().toISOString().split('T')[0],
       },
       errors: {},
     },

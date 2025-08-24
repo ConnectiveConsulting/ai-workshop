@@ -76,20 +76,4 @@ const TrainerService = {
     }
   },
 
-  /**
-   * Get all Pokemon captured by a Trainer
-   * @param {number} id - The Trainer ID
-   * @returns {Promise} Promise object representing the API response
-   */
-  getTrainerPokemon: async (id) => {
-    try {
-      const response = await api.get(`/Capture/trainer/${id}`);
-      return response.data;
-    } catch (error) {
-      console.error(`Error fetching Pokemon for Trainer with ID ${id}:`, error);
-      throw error;
-    }
-  }
-};
-
 export default TrainerService;
