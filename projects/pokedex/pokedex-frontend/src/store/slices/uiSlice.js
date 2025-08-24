@@ -54,6 +54,17 @@ const initialState = {
       },
       errors: {},
     },
+    editTrainer: {
+      isOpen: false,
+      isSubmitting: false,
+      data: {
+        name: '',
+        region: '',
+        email: '',
+        phone: '',
+      },
+      errors: {},
+    },
     captureForm: {
       isOpen: false,
       isSubmitting: false,

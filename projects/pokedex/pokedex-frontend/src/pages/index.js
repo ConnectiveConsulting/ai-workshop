@@ -5,6 +5,8 @@ import PokemonCreatePage from './PokemonCreatePage';
 import PokemonEditPage from './PokemonEditPage';
 import TrainerListPage from './TrainerListPage';
 import TrainerDetailPage from './TrainerDetailPage';
+import TrainerCreatePage from './TrainerCreatePage';
+import TrainerEditPage from './TrainerEditPage';
 import CaptureManagerPage from './CaptureManagerPage';
 
 export {
@@ -14,5 +16,7 @@ export {
   PokemonEditPage,
   TrainerListPage,
   TrainerDetailPage,
+  TrainerCreatePage,
+  TrainerEditPage,
   CaptureManagerPage
 };

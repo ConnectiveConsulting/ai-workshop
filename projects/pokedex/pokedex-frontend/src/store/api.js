@@ -151,7 +151,7 @@ export const api = createApi({
       query: ({ id, ...trainerData }) => ({
         url: `/Trainer/${id}`,
         method: 'PUT',
-        body: trainerData,
+        body: { id, ...trainerData },
       }),
       invalidatesTags: (result, error, { id }) => [
         { type: 'Trainer', id },

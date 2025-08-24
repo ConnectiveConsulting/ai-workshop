@@ -8,6 +8,8 @@ import {
   PokemonEditPage,
   TrainerListPage,
   TrainerDetailPage,
+  TrainerCreatePage,
+  TrainerEditPage,
   CaptureManagerPage
 } from './pages';
 import './App.css';
@@ -24,6 +26,8 @@ function App() {
             <Route path="/pokemon/:id/edit" element={<PokemonEditPage />} />
             <Route path="/pokemon" element={<PokemonListPage />} />
             <Route path="/trainers" element={<TrainerListPage />} />
+            <Route path="/trainers/create" element={<TrainerCreatePage />} />
+            <Route path="/trainers/:id/edit" element={<TrainerEditPage />} />
             <Route path="/trainers/:id" element={<TrainerDetailPage />} />
             <Route path="/captures" element={<CaptureManagerPage />} />
           </Routes>
