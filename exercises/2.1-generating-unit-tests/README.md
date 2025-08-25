@@ -70,7 +70,7 @@ In this exercise, you will learn how to use GitHub Copilot to generate unit test
 
 1. In the Copilot chat window make sure we are in ``Ask`` mode and the model is ``GPT4.1``. Make sure the tests file (e.g. HolidayScheduleGeneratorTests.cs) is the active window, then click on the name of the file next to the ``Add Context`` button above the Copilot prompt entry to make sure the test file is part of the context.
 
-    ![alt text](image-1.png)
+    ![alt text](image.png)
 
 1. Enter the following prompt
 
@@ -80,9 +80,7 @@ In this exercise, you will learn how to use GitHub Copilot to generate unit test
 
 1. Switch Copilot to ``Agent`` mode and enter the following prompt
 
-    ```
-    Please implement unit tests for the edge cases identified in the previous step.
-    ```
+    > Please implement unit tests for the edge cases identified in the previous step.
 
 1. Review the full test suite to ensure all edge cases are covered.
 
