@@ -43,7 +43,7 @@ In this exercise we will exploit the fact that this new feature did not exist wh
 
 ### Step 3. Provide context required for the task
 
-1. Add the following context to the prompt:
+1. Add the #fetch statement to the Microsoft .NET documentation. You
     
     > Change this class to use the new extension member syntax. Also, make the IsEmpty extension an extension property instead of a method.
     >
