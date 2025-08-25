@@ -51,26 +51,26 @@ This will demonstrate both the tactical skill of refining prompts on the fly and
     > 
     > Use the following format:
     > 
-    > # Overview
+    > \# Overview
     > 
     > (Company description, job description)
     > 
-    > # Responsibilities
+    > \# Responsibilities
     > 
     > (List of responsibilities for the job)
     > 
-    > # Qualifications:
+    > \# Qualifications:
     > 
     > (List of qualifications for the job)
 
 1. Rewrite into the CRISPE format (Capacity & Role, Insight, Statement, Personality, Experiment):
 
     Example prompt:
-    > - **Capacity and Role:** Technical recruiter with expertise in hiring software engineering roles.
-    > - **Insight:** Our company, Acme Healthcare, is dedicated to improving healthcare outcomes through innovative technology solutions.
-    > - **Statement**: Write a job posting for a senior software engineer in the healthcare industry with expertise in .NET, React, and Azure, and a preference for remote work.
-    > - **Personality:** Use professional, clear, and concise language; bullet points for responsibilities and qualifications; highlight growth opportunities and company values.  
-    > - **Experiment**: Provide three different versions of the job posting using different approaches.
+    > \- \*\*Capacity and Role:** Technical recruiter with expertise in hiring software engineering roles.
+    > \- \*\*Insight:** Our company, Acme Healthcare, is dedicated to improving healthcare outcomes through innovative technology solutions.
+    > \- \*\*Statement**: Write a job posting for a senior software engineer in the healthcare industry with expertise in .NET, React, and Azure, and a preference for remote work.
+    > \- \*\*Personality:** Use professional, clear, and concise language; bullet points for responsibilities and qualifications; highlight growth opportunities and company values.  
+    > \- \*\*Experiment**: Provide three different versions of the job posting using different approaches.
 
 1. Read through the outputs. Did they meet your expectations? Were there any surprising elements?
 
