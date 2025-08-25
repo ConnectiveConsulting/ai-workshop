@@ -96,4 +96,4 @@ Copilot can generate your basic happy-path tests, and often uncover edge cases y
 
 ---
 
-[Next: Copilot Basics - Prompts & Context](../exercises/2.2-copilot-context/README.md)
+[Next: Copilot Basics - Prompts & Context](../2.2-copilot-context/README.md)

@@ -96,4 +96,4 @@ In this exercise, you learned how to create and use custom instruction files for
 
 ---
 
-[Next: Using MCP Servers with GitHub Copilot](../exercises/4.2-mcp/README.md)
+[Next: Using MCP Servers with GitHub Copilot](../4.2-mcp/README.md)

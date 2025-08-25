@@ -109,4 +109,4 @@ In this exercise, we learned how to create effective prompts for generating job 
 
 ---
 
-[Next: GitHub Copilot Custom Instructions](../exercises/4.1-instructions/README.md)
+[Next: GitHub Copilot Custom Instructions](../4.1-instructions/README.md)

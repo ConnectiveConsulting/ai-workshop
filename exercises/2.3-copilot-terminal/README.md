@@ -54,4 +54,4 @@ In this exercise, you learned how to use GitHub Copilot in the terminal to help 
 
 ---
 
-[Next: Understanding and Exploring a Codebase](../exercises/2.4-understanding-code/README.md)
+[Next: Understanding and Exploring a Codebase](../2.4-understanding-code/README.md)

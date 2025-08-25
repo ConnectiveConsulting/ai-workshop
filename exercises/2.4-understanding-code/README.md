@@ -83,4 +83,4 @@ In this exercise, we explored a codebase using AI tools like GitHub Copilot. We 
 
 ---
 
-[Next: Prompt Engineering](../exercises/3.1-prompt-engineering/README.md)
+[Next: Prompt Engineering](../3.1-prompt-engineering/README.md)

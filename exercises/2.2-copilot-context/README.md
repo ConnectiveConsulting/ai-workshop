@@ -72,4 +72,4 @@ In this exercise, we successfully provided context to GitHub Copilot, enabling i
 ---
 
 
-[Next: Copilot Basics - Copilot Terminal](../exercises/2.3-copilot-terminal/README.md)
+[Next: Copilot Basics - Copilot Terminal](../2.3-copilot-terminal/README.md)

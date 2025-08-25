@@ -74,5 +74,5 @@ This repository has already been cloned to your machine in the C:\Workshop folde
 
 ---
 
-[Next: Copilot Basics - Generating Unit Tests](../exercises/2.1-generating-unit-tests/README.md)
+[Next: Copilot Basics - Generating Unit Tests](../2.1-generating-unit-tests/README.md)
 
