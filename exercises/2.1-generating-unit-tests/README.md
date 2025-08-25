@@ -72,15 +72,19 @@ In this exercise, you will learn how to use GitHub Copilot to generate unit test
 
     ![alt text](image.png)
 
-1. Enter the following prompt
+1. Copy the following prompt into Copilot:
 
-    > Are there any other date specific edge cases for the HolidayScheduleGenerator class you can think for that need to be added to these unit tests? Explore all possibilities that are not already accounted for and list them.
+    ```
+    Are there any other date specific edge cases for the HolidayScheduleGenerator class you can think for that need to be added to these unit tests? Explore all possibilities that are not already accounted for and list them.
+    ```
 
 1. Read these over the response. There's a good chance Copilot came up with a list of more edge cases (leap years, boundary cases, etc).
 
 1. Switch Copilot to ``Agent`` mode and enter the following prompt
 
-    > Please implement unit tests for the edge cases identified in the previous step.
+    ```
+    Please implement unit tests for the edge cases identified in the previous step.
+    ```
 
 1. Review the full test suite to ensure all edge cases are covered.
 
