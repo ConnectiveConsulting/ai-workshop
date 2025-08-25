@@ -2,6 +2,8 @@
 
 ## Learning Objectives
 
+- Understand how to use AI tools like GitHub Copilot to explore and understand a new codebase.
+- Understand how to use AI tools like GitHub Copilot to learn new frameworks and technologies.
 
 ## Overview
 

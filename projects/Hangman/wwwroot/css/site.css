@@ -1,9 +1,2 @@
 body { font-family: Arial, sans-serif; background: #f8f8f8; }
 .hangman-container { background: #fff; max-width: 400px; margin: 2em auto; padding: 2em; border-radius: 8px; box-shadow: 0 2px 8px #ccc; }
-.word { font-size: 2em; letter-spacing: 0.2em; margin-bottom: 1em; }
-.guesses, .attempts { margin: 1em 0; }
-.status { margin: 1em 0; }
-.won { color: green; font-weight: bold; }
-.lost { color: red; font-weight: bold; }
-input[name=letter] { width: 2em; text-align: center; font-size: 1.2em; }
-button { padding: 0.5em 1em; font-size: 1em; }
