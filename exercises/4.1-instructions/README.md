@@ -54,7 +54,7 @@ In this exercise, you will learn how to create and use custom instruction files 
     # JavaScript Style Guide
     - Use consistent naming conventions.
     - Keep functions short and focused on a single task.
-    - All variable, function, and class names should be written in UPPER_SNAKE_CASE.
+    - All variable (global and private), function, and class names should be written in UPPER_SNAKE_CASE.
     - Use JSDoc comments for all methods.
     - All comments should be written in Shakespearean English.
     - If any of the above style rules are violated, you should change the code to match the style guide.
@@ -66,17 +66,31 @@ Creating a simple hangman game is familiar enough that Copilot should be able to
 
 1. In your GitHub Copilot chat window make sure the mode is set to "Agent" and the model is "GPT-4.1".
 
-1. Click the "Add Context" button and add the ``Controllers/HangmanController.cs`` and ``wwwroot/js/game.js`` files.
+1. Open the Controllers/HangmanController.cs file. Above the Copilot chat input text box, click the "HangmanController.cs" file name next "Add Context" button to add it to the context.
 
-    > Copilot doesn't use the file specific instructions unless a matching file is explicitly added to the context, an Agent choosing to read or edit the file doesn't count. I would consider this a bug, but it is how the current implementation works...
+    > Copilot doesn't use the file specific instructions unless the *currently open file* matches the glob pattern. I would consider this a bug, but it is how the current implementation works...
+    > You should see "Used 2 references" from Copilot when you run the prompt showing that it pulled in the global instructions and the *.cs custom instructions:
+    > ![alt text](image-1.png)
 
-1. Enter the following prompt:
+1. Enter and run the following prompt:
 
     ```
-    Create a hangman game using ASP.NET MVC and javascript. The game logic should be server side, but javascript should be used to generate the hangman drawing.
+    Create a hangman game using ASP.NET MVC and javascript. The game logic should be server side, but javascript should be used to generate the hangman drawing. Start with the C# code, including the controller, game logic, game state, and views. Do NOT write the javascript code yet.
     ```
 
-1. Let Copilot generate the full project. While it is working, review the code it is generating. Is there anything unusual about the generated code? Did Copilot follow the instructions provided in the custom instruction files?
+1. When Copilot is done click the ``Keep`` button to save the changes it made.
+
+1. Open the wwwroot/js/game.js file. Using the same chat session, click the "game.js" file name next "Add Context" button to add it to the context.
+
+1. Enter and run the following prompt:
+
+    ```
+    Now create the JavaScript code, including the drawing functions.
+    ```
+
+1. Review the code that was generated. Is there anything unusual about the generated code? Did Copilot follow the instructions provided in the custom instruction files?
+
+
 
 ## Summary
 
