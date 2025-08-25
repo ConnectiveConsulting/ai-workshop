@@ -95,6 +95,8 @@ resource "azurerm_windows_virtual_machine" "workshop_vm" {
   admin_username      = var.admin_username
   admin_password      = var.admin_password
   tags                = var.tags
+  
+  vm_agent_platform_updates_enabled = true
 
   network_interface_ids = [
     azurerm_network_interface.workshop_vm_nic[count.index].id
@@ -133,7 +135,7 @@ resource "azurerm_windows_virtual_machine" "workshop_vm" {
 
 # Add extension to prepare the VM for workshop use
 resource "azurerm_virtual_machine_extension" "workshop_vm_extension" {
-  count                = var.vm_count
+  count                = var.provision_vm_extension ? var.vm_count : 0
   name                 = "PrepareWorkshopVM"
   virtual_machine_id   = azurerm_windows_virtual_machine.workshop_vm[count.index].id
   publisher            = "Microsoft.Compute"

@@ -27,6 +27,8 @@ Using your local machine:
 
 ### Step 1: Connect to the Remote VM
 
+> Note - if you have a .rdp file from the instructor you can skip steps 2-5
+
 1. Open MS Remote Desktop (Start > Search > Remote Desktop)
 
 1. In the Computer field enter the IP address or name of the remote VM assigned to you.
@@ -41,32 +43,16 @@ Using your local machine:
 
 1. Click 'Yes' to accept the unknown certificate
 
-1. Note that the remote VM may take a few moments to initialize after you log in.
-
-1. Click 'Accept' to accept the privacy settings.
+1. Note that the remote VM may take a few moments to initialize after you log in, and may be slow at first.
 
 1. Open Google Chrome and navigate back to these instructions (https://github.com/ConnectiveConsulting/ai-workshop) so you can stay within the browser. **Do not use Microsoft Edge** as Edge requires you to log into a Microsoft account.
 
 1. Keep this browser window open to follow along with the exercise instructions.
 
-<!--
-1. When opening Chrome for the first time click 'Don't sign in' to bypass loading a profile.
-
-1. Click the 'Set as default browser' button to open up settings.
-
-1. Click the 'Set default' button next to 'Make Google Chrome your default browser'.
-
-![alt text](image.png)
--->
-
 ### Step 2: Log into GitHub Copilot
 
 1. Open Visual Studio Code from the desktop shortcut
     - Note we are using Visual Studio *Code*, not full Visual Studio. GitHub Copilot in Visual Studio Code tends to get the latest features before all other IDEs.
-
-<!--
-1. You can close the Windows Subsystem for Linux notification if it is open, or let it close automatically after 60 seconds.
--->
 
 1. Click the 'Set up Copilot' button on the welcome screen
 

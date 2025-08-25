@@ -1,3 +1,8 @@
+variable "provision_vm_extension" {
+  description = "Whether to provision the VM extension (only on new VM creation)"
+  type        = bool
+  default     = true
+}
 variable "resource_group_name" {
   description = "Name of the resource group"
   type        = string
