@@ -37,6 +37,7 @@ In this exercise, you will learn how to create and use custom instruction files 
     - Keep methods short and focused on a single task.
     - Use XML comments for public APIs.
     - All comments should be written in pirate speak. Arr matey!
+    - If any of the above style rules are violated, you should change the code to match the style guide.
     ```
 
     > Take note of the "applyTo" field. These instructions only apply to *.cs files.
@@ -56,6 +57,7 @@ In this exercise, you will learn how to create and use custom instruction files 
     - All variable, function, and class names should be written in UPPER_SNAKE_CASE.
     - Use JSDoc comments for all methods.
     - All comments should be written in Shakespearean English.
+    - If any of the above style rules are violated, you should change the code to match the style guide.
     ```
 
 ### Step 2. Create the application with Copilot
