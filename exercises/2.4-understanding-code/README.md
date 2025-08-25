@@ -58,5 +58,27 @@ The front end of this application is built using React and the Redux Toolkit for
     Click the ``Add Context`` button and select the PokemonList.js file.
 
     ```
-    Describe step by step how data gets loaded by Redux Toolkit into the PokemonList component. Reference line numbers for the various actions.
+    Describe step by step how data gets loaded by Redux Toolkit into the PokemonList component to someone new to Redux. Reference line numbers for the various actions.
     ```
+
+1. Review the output from Copilot. Ask any clarifying questions you may have.
+
+    Example: Open the /pokedex-frontend/src/store/api.js, highlight line 190:
+
+    ```javascript
+    useGetAllPokemonQuery
+    ```
+
+    Hit ``Ctrl-\`` to open the inline Copilot chat, and type in:
+
+    ```
+    /explain how does this query get created?
+    ```
+
+## Summary
+
+In this exercise, we explored a codebase using AI tools like GitHub Copilot. We learned how to navigate the project structure, understand the flow of data, and gain insights into the technologies used. By leveraging AI, we were able to quickly grasp complex concepts and improve our understanding of the application.
+
+---
+
+[Next: Prompt Engineering](../exercises/3.1-prompt-engineering/README.md)

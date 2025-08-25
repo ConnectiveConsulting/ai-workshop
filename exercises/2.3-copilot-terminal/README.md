@@ -54,4 +54,4 @@ In this exercise, you learned how to use GitHub Copilot in the terminal to help 
 
 ---
 
-[Next: Prompt Engineering](../exercises/3.1-prompt-engineering/README.md)
+[Next: Understanding and Exploring a Codebase](../exercises/2.4-understanding-code/README.md)
