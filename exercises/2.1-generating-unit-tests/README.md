@@ -66,7 +66,7 @@ In this exercise, you will learn how to use GitHub Copilot to generate unit test
 
 ### Step 3. Explore edge cases
 
-1. Think about potential edge cases that could break the holiday schedule generator. For example, what happens if the input year is a leap year? Are there any holidays that could fall on the same date?
+1. Think about potential edge cases that could break the holiday schedule generator. For example, what happens if the input year is a leap year? What if holidays fall on the same date?
 
 1. In the Copilot chat window make sure we are in ``Ask`` mode and the model is ``GPT4.1``. Make sure the tests file (e.g. HolidayScheduleGeneratorTests.cs) is the active window, then click on the name of the file next to the ``Add Context`` button above the Copilot prompt entry to make sure the test file is part of the context.
 
@@ -74,9 +74,7 @@ In this exercise, you will learn how to use GitHub Copilot to generate unit test
 
 1. Enter the following prompt
 
-    ```
-    Are there any other date specific edge cases for the HolidayScheduleGenerator class you can think for that need to be added to these unit tests? Explore all possibilities that are not already accounted for and list them.
-    ```
+    > Are there any other date specific edge cases for the HolidayScheduleGenerator class you can think for that need to be added to these unit tests? Explore all possibilities that are not already accounted for and list them.
 
 1. Read these over the response. There's a good chance Copilot came up with a list of more edge cases (leap years, boundary cases, etc).
 
