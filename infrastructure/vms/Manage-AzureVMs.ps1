@@ -86,7 +86,7 @@ function Start-TargetVMs {
     foreach ($vm in $VMs) {
         Write-Host "Starting VM: $($vm.name)..." -ForegroundColor Cyan
         try {
-            $result = az vm start --resource-group $vm.resourceGroup --name $vm.name 2>&1
+            $result = az vm start --resource-group $vm.resourceGroup --name $vm.name --no-wait
             if ($LASTEXITCODE -eq 0) {
                 Write-Host "Successfully started VM: $($vm.name)" -ForegroundColor Green
                 # Get the public IP address
