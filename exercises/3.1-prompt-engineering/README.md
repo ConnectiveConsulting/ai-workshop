@@ -97,13 +97,7 @@ While the preceeding process can be used to eventually get the desired outcome, 
     Ask me questions until you have enough information to create a detailed and effective prompt.
     ```
 
-1. Answer the questions
-
-    - Company name, description, and mission: Acme Healthcare, is dedicated to improving healthcare outcomes through innovative technology solutions.
-    - Job title and seniority level: Senior Software Engineer
-    - Required skills and technologies: .NET, React, Azure
-    - Key responsibilities: Develop and maintain healthcare applications, collaborate with cross-functional teams, ensure code quality and performance.
-    - Preferred work location: Remote
+1. Answer the questions the LLM asks.
 
 ## Overview
 

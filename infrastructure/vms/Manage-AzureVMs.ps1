@@ -124,7 +124,7 @@ function Stop-TargetVMs {
     foreach ($vm in $VMs) {
         Write-Host "Stopping VM: $($vm.name)..." -ForegroundColor Cyan
         try {
-            $result = az vm deallocate --resource-group $vm.resourceGroup --name $vm.name 2>&1
+            $result = az vm deallocate --resource-group $vm.resourceGroup --name $vm.name --no-wait
             if ($LASTEXITCODE -eq 0) {
                 Write-Host "Successfully stopped VM: $($vm.name)" -ForegroundColor Green
             } else {

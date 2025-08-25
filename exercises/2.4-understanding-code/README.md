@@ -52,3 +52,11 @@ In this exercise, you will learn how to use AI to explore a new codebase, unders
 The front end of this application is built using React and the Redux Toolkit for state management. The flux pattern, Redux, and Redux Toolkit are fairly advanced concepts that developers struggle to learn when first exposed to them. Let's use Copilot to help us understand these concepts in the context of the codebase.
 
 > If you are already very familiar with these concepts, you can try this exercise using some other code in this repository or an open source project that uses a technology you are interested in. For example, the root folder contains a Terraform configuration in /infrastructure/vms that is used to provision the virtual machines used in this workshop. Take a look at this if you are unfamiliar with Terraform and it's syntax.
+
+1. Start a new chat session. Make sure the mode is ``Ask``.
+
+    Click the ``Add Context`` button and select the PokemonList.js file.
+
+    ```
+    Describe step by step how data gets loaded by Redux Toolkit into the PokemonList component. Reference line numbers for the various actions.
+    ```
