@@ -90,12 +90,10 @@ Creating a simple hangman game is familiar enough that Copilot should be able to
 
 1. Review the code that was generated. Is there anything unusual about the generated code? Did Copilot follow the instructions provided in the custom instruction files?
 
-
-
 ## Summary
 
 In this exercise, you learned how to create and use custom instruction files for GitHub Copilot. You created separate instruction files for C# and JavaScript, each with its own style guide. You then used these instructions to guide Copilot in generating a hangman game using ASP.NET MVC and JavaScript. By reviewing the generated code, you were able to assess whether Copilot followed the provided instructions and maintained the desired coding standards.
 
 ---
 
-[Next: Using MCP Servers with GitHub Copilot](../exercises/4.1-mcp/README.md)
+[Next: Using MCP Servers with GitHub Copilot](../exercises/4.2-mcp/README.md)
