@@ -66,6 +66,10 @@ Creating a simple hangman game is familiar enough that Copilot should be able to
 
 1. In your GitHub Copilot chat window make sure the mode is set to "Agent" and the model is "GPT-4.1".
 
+1. Click the "Add Context" button and add the ``Controllers/HangmanController.cs`` and ``wwwroot/js/game.js`` files.
+
+    > Copilot doesn't use the file specific instructions unless a matching file is explicitly added to the context, an Agent choosing to read or edit the file doesn't count. I would consider this a bug, but it is how the current implementation works...
+
 1. Enter the following prompt:
 
     ```
