@@ -23,8 +23,9 @@ In this exercise, you will learn how to use GitHub Copilot to generate unit test
 
 1. Open the terminal in Visual Studio Code using ``Ctrl + ` `` or by selecting "View" > "Terminal" from the top menu.
 
-1. Build and run the project with the ``dotnet`` runtime:
+1. Change to the console app project, build and run the project with the ``dotnet`` runtime:
     ```powershell
+    cd HolidayGenerator.Console
     dotnet run
     ```
 
