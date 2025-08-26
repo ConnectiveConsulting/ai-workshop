@@ -45,15 +45,9 @@ In this exercise we will exploit the fact that this new feature did not exist wh
 
 ### Step 3. Provide context required for the task
 
-1. Add the #fetch statement to the Microsoft .NET documentation. You
-    
-    ```
-    Change this class to use the new extension member syntax. Also, make the IsEmpty extension an extension property instead of a method.
-    
-    #fetch https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods
-    ```
+1. Click the + button to start a new chat session.
 
-1. Click the + button to start a new context.
+    ![alt text](image.png)
 
 1. Add the following context to the prompt:
     
@@ -61,8 +55,6 @@ In this exercise we will exploit the fact that this new feature did not exist wh
     Change this class to use the new extension member syntax. Also, make the IsEmpty extension an extension property instead of a method.
     
     #fetch https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods
-    
-    Double check the syntax is correct by running a dotnet build on this file.
     ```
 
 1. Review the reasoning output from Copilot. Note that Copilot included the .NET 10 extension member documention in the context, and was now able to generate the correct syntax.

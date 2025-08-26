@@ -35,7 +35,7 @@ In this exercise, you will learn how to use GitHub Copilot to generate unit test
 
 ### Step 2. Generate tests
 
-1. Open the HolidaySchedulerGenerator.cs file.
+1. Open the HolidayGenerator.Console/HolidaySchedulerGenerator.cs file.
 
 1. Click on the ``public class HolidayScheduleGenerator`` declaration to place your cursor there.
 
@@ -47,7 +47,7 @@ In this exercise, you will learn how to use GitHub Copilot to generate unit test
 
 1. Once Copilot is done generating the test class click ``Accept`` to keep the changes.
 
-1. Hit ``Ctrl + S`` to save the changes. Save the file in the HolidayGenerator.Tests project folder (C:\Workshop\projects\HolidayGenerator\HolidayGenerator.Tests) and name it after the class name (Copilot will likely name it "HolidayScheduleGeneratorTest").
+1. Hit ``Ctrl + S`` to save the changes. Save the file in the HolidayGenerator.Tests project folder (C:\Workshop\projects\HolidayGenerator\HolidayGenerator.Tests) and name it after the class name (Copilot will likely name the class "HolidayScheduleGeneratorTest").
 
 1. Because we used the inline chat feature and saved the file to a different project, there's a chance there are compiler errors because Copilot only looked at the current file and didn't pull other files into its context. For any errors you see click on the lightbulb icon that appears next to the line number and click the ``Fix`` menu item. Click accept for the suggested fixes.
 
