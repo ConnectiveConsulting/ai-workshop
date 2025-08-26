@@ -39,7 +39,7 @@ In this exercise, you will learn how to use GitHub Copilot to generate unit test
 
 1. Click on the ``public class HolidayScheduleGenerator`` declaration to place your cursor there.
 
-1. Press ``Ctrl + \`` to bring up the inline Copilot editor inline chat.
+1. Press ``Ctrl + i`` to bring up the inline Copilot editor inline chat.
 
 1. Type ``/tests`` and hit ``Enter`` to initiate a test generation request for the class.
 
