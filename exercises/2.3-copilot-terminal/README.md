@@ -24,6 +24,7 @@ Git in particular has a rich set of commands and workflows that are not always i
     git add .
     git commit -m "Your commit message"
     ```
+
 ### Step 2. Fix a git mistake
 
 1. Oh no! You must committed to main instead of feature branch! Undoing this isn't difficult in git, but it happens rarely enough that you might not always remember the commands off the top of your head. You could Google them, but let's use GitHub Copilot to help us.
@@ -32,7 +33,9 @@ Git in particular has a rich set of commands and workflows that are not always i
 
 1. Enter the following prompt:
 
-    > I accidentally committed my last changes to the main branch in git. I have not pushed anything to my remote yet. Give me the git commands to move this change to a new feature branch named "my-feature-branch" and revert them from the main branch in my local git instance.
+    ```
+    I accidentally committed my last changes to the main branch in git. I have not pushed anything to my remote yet. Give me the git commands to move this change to a new feature branch named "my-feature-branch" and revert them from the main branch in my local git instance.
+    ```
 
 1. If the model correctly understood your request it should suggest something similar to 
 

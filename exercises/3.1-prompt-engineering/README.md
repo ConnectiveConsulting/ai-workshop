@@ -16,7 +16,6 @@ In this exercise, you will explore how prompt engineering improves results in tw
 
 This will demonstrate both the tactical skill of refining prompts on the fly and the strategic skill of designing reusable prompt frameworks.
 
-
 ## Excercise Steps
 
 ### Step 1. Write and refine a prompt
@@ -29,7 +28,9 @@ This will demonstrate both the tactical skill of refining prompts on the fly and
 
 1. Enter the following prompt:
 
-    > Write a job description for a software engineer.
+    ```
+    Write a job description for a software engineer.
+    ```
 
     Observe that the result is likely too generic. The model fulfilled your request but didn't bother to ask clarifying questions or seek additional context.
 
@@ -40,41 +41,43 @@ This will demonstrate both the tactical skill of refining prompts on the fly and
     - Location (e.g., remote, onsite, hybrid).
 
     Example prompt:
-    > Write a job description for a senior software engineer in the healthcare industry with expertise in .NET, React, and Azure, and a preference for remote work.
+    ```
+    Write a job description for a senior software engineer in the healthcare industry with expertise in .NET, React, and Azure, and a preference for remote work.
+    ```
 
 1. Add structure: Refine the prompt further by providing a clear structure or template for the job description. This could include sections for responsibilities, qualifications, and company culture.
     
     Example prompt:
-    > Write a job description for a senior software engineer in the healthcare industry with expertise in .NET, React, and Azure, and a preference for remote work.
-    > 
-    > Our company, Acme Healthcare, is dedicated to improving healthcare outcomes through innovative technology solutions.
-    > 
-    > Use the following format:
-    > 
-    > \# Overview
-    > 
-    > (Company description, job description)
-    > 
-    > \# Responsibilities
-    > 
-    > (List of responsibilities for the job)
-    > 
-    > \# Qualifications:
-    > 
-    > (List of qualifications for the job)
+    ```
+    Write a job description for a senior software engineer in the healthcare industry with expertise in .NET, React, and Azure, and a preference for remote work.
+
+    Our company, Acme Healthcare, is dedicated to improving healthcare outcomes through innovative technology solutions.
+
+    Use the following format:
+
+    # Overview
+
+    (Company description, job description)
+
+    # Responsibilities
+
+    (List of responsibilities for the job)
+
+    # Qualifications:
+
+    (List of qualifications for the job)
+    ```
 
 1. Rewrite into the CRISPE format (Capacity & Role, Insight, Statement, Personality, Experiment):
 
     Example prompt:
-    > \- \*\*Capacity and Role:** Technical recruiter with expertise in hiring software engineering roles.
-    > 
-    > \- \*\*Insight:** Our company, Acme Healthcare, is dedicated to improving healthcare outcomes through innovative technology solutions.
-    > 
-    > \- \*\*Statement**: Write a job posting for a senior software engineer in the healthcare industry with expertise in .NET, React, and Azure, and a preference for remote work.
-    > 
-    > \- \*\*Personality:** Use professional, clear, and concise language; bullet points for responsibilities and qualifications; highlight growth opportunities and company values.  
-    > 
-    > \- \*\*Experiment**: Provide three different versions of the job posting using different approaches.
+    ```
+    - **Capacity and Role:** Technical recruiter with expertise in hiring software engineering roles.
+    - **Insight:** Our company, Acme Healthcare, is dedicated to improving healthcare outcomes through innovative technology solutions.
+    - **Statement:** Write a job posting for a senior software engineer in the healthcare industry with expertise in .NET, React, and Azure, and a preference for remote work.
+    - **Personality:** Use professional, clear, and concise language; bullet points for responsibilities and qualifications; highlight growth opportunities and company values.
+    - **Experiment:** Provide three different versions of the job posting using different approaches.
+    ```
 
 1. Read through the outputs. Did they meet your expectations? Were there any surprising elements?
 
@@ -87,9 +90,11 @@ While the preceeding process can be used to eventually get the desired outcome, 
 1. Have the LLM now take the role of a prompt engineer. We will create a simple prompt telling the LLM to create the prompt for us.
 
     Prompt:
-    > You are an expert prompt engineer skilled in creating efficient and effective prompts for large language models.
-    > Write a prompt for generating job postings for software engineers roles.
-    > Ask me questions until you have enough information to create a detailed and effective prompt.
+    ```
+    You are an expert prompt engineer skilled in creating efficient and effective prompts for large language models.
+    Write a prompt for generating job postings for software engineers roles.
+    Ask me questions until you have enough information to create a detailed and effective prompt.
+    ```
 
 1. Answer the questions the LLM asks. Iterate until the prompt seems to contain all of the context required for the posting.
 

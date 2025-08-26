@@ -43,7 +43,9 @@ In this exercise, you will learn how to use AI to explore a new codebase, unders
 
 1. Enter the following prompt:
     
-    > Explain the general codebase to someone who is new to the project. Provide diagrams and guidance on where to start.
+    ```
+    Explain the general codebase to someone who is new to the project. Provide diagrams and guidance on where to start.
+    ```
 
 1. Review the output from Copilot. What types of information did it provide about the codebase?
 
@@ -57,7 +59,9 @@ If you are already familiar with these concepts, you can try this exercise using
 
     Click the ``Add Context`` button and select the PokemonList.js file.
 
-    > Describe step by step how data gets loaded by Redux Toolkit into the PokemonList component to someone new to Redux. Reference line numbers for the various actions.
+    ```
+    Describe step by step how data gets loaded by Redux Toolkit into the PokemonList component to someone new to Redux. Reference line numbers for the various actions.
+    ```
 
 1. Review the output from Copilot. Ask any clarifying questions you may have.
 
@@ -69,7 +73,9 @@ If you are already familiar with these concepts, you can try this exercise using
 
     Hit ``Ctrl-\`` to open the inline Copilot chat, and type in:
 
-    > /explain how does this query get created?
+    ```
+    /explain how does this query get created?
+    ```
 
 ## Summary
 
