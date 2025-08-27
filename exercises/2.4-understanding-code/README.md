@@ -71,7 +71,7 @@ If you are already familiar with these concepts, you can try this exercise using
     useGetAllPokemonQuery
     ```
 
-    Hit ``Ctrl-\`` to open the inline Copilot chat, and type in:
+    Hit ``ctrl + i`` to open the inline Copilot chat, and type in:
 
     ```
     /explain how does this query get created?
