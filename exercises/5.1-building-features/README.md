@@ -163,7 +163,7 @@ Furthermore, while we could write these playbooks by hand, it's more efficient t
 
 ### Step 7. Try to one-shot the implementation
 
-1. Revert your changes by clicking the "Discard all changes" button new to "Changes" in the source control menu.
+1. Revert your changes by clicking the "Discard all changes" button next to "Changes" in the source control menu.
 
 ![alt text](image-2.png)
 
