@@ -44,12 +44,11 @@ output "rdp_connection_strings" {
 output "workshop_ready_message" {
   description = "Message indicating the workshop environment is ready"
   value = <<-EOT
-    Workshop environment with ${var.vm_count} Visual Studio 2022 VMs is ready!
+    Workshop environment with ${var.vm_count} VMs is ready!
     
     To connect to a VM:
     1. Use the RDP connection strings provided above
     2. Login with username: ${var.admin_username} and the password you provided
-    3. Visual Studio 2022 is pre-installed on each VM
     
     Each VM has a C:\\Workshop directory with a README.txt file for workshop instructions.
   EOT

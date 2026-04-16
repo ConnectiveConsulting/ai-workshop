@@ -1,8 +1,0 @@
-/* Main CSS file */
-
-/* Import all component-specific CSS files */
-@import './layout.css';
-@import './pokemon.css';
-@import './trainer.css';
-
-/* Any additional global styles can be added here */

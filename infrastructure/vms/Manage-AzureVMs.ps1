@@ -1,9 +1,9 @@
 
 # .SYNOPSIS
-#     Starts or stops Azure VMs in the ai-workshop-rg resource group with names matching vs2022-vm-*
+#     Starts or stops Azure VMs in the ai-workshop-rg resource group with the matching vm prefix
 #
 # .DESCRIPTION
-#     This script gets all Azure VMs in the specified resource group with names matching the pattern vs2022-vm-*
+#     This script gets all Azure VMs in the specified resource group with names matching the specified VM prefix
 #     and either starts or stops them based on the provided action parameter, using Azure CLI (az).
 #
 # .PARAMETER Action
@@ -11,11 +11,11 @@
 #
 # .EXAMPLE
 #     .\Manage-AzureVMs.ps1 -Action Start
-#     Starts all VMs with names matching vs2022-vm-* in the ai-workshop-rg resource group.
+#     Starts all VMs with names matching the specified VM prefix in the ai-workshop-rg resource group.
 #
 # .EXAMPLE
 #     .\Manage-AzureVMs.ps1 -Action Stop
-#     Stops all VMs with names matching vs2022-vm-* in the ai-workshop-rg resource group.
+#     Stops all VMs with names matching the specified VM prefix in the ai-workshop-rg resource group.
 
 
 param (
@@ -28,7 +28,7 @@ param (
 # Resource group name
 $resourceGroupName = "ai-workshop-rg"
 # VM name pattern
-$vmNamePattern = "vs2022-vm-*"
+$vmNamePattern = "workshop-vm-*"
 
 
 # Function to check if Azure CLI is installed and login if needed

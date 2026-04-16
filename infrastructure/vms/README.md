@@ -1,15 +1,15 @@
-# Azure Visual Studio 2022 Workshop VMs
+# Azure Workshop VMs
 
-This Terraform configuration creates a dynamic number of Windows virtual machines with Visual Studio 2022 Enterprise pre-installed in Azure. These VMs are intended for workshop environments where students need to remote into development machines.
+This Terraform configuration creates a dynamic number of Windows virtual machines in Azure with all necessary prerequisites installed. These VMs are intended for workshop environments where students need to remote into development machines.
 
 ## Features
 
-- Creates a configurable number of Windows VMs with Visual Studio 2022 Enterprise
+- Creates a configurable number of Windows VMs
 - Sets up networking with proper security groups for RDP access
 - Configures each VM with a public IP for remote access
 - Creates a workshop directory on each VM
 - Supports automatic Git repository cloning for workshop materials
-- Allows custom PowerShell commands for additional VM setup
+- Runs a custom PowerShell commands for additional VM setup
 - Outputs connection information for easy access
 
 ## Prerequisites
@@ -70,10 +70,10 @@ This Terraform configuration creates a dynamic number of Windows virtual machine
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `resource_group_name` | Name of the resource group | `workshop-vs2022-rg` |
+| `resource_group_name` | Name of the resource group | `workshop-rg` |
 | `location` | Azure region where resources will be created | `eastus` |
-| `vm_count` | Number of Visual Studio 2022 VMs to create | `1` |
-| `vm_name_prefix` | Prefix for VM names | `vs2022-vm` |
+| `vm_count` | Number of VMs to create | `1` |
+| `vm_name_prefix` | Prefix for VM names | `workshop-vm` |
 | `vm_size` | Size of the VM | `Standard_D4s_v3` |
 | `admin_username` | Admin username for the VMs | `workshopadmin` |
 | `admin_password` | Admin password for the VMs | (required) |
@@ -104,7 +104,6 @@ This Terraform configuration creates a dynamic number of Windows virtual machine
 ## Notes
 
 - The VMs are configured with RDP access from any IP address. For production use, consider restricting this to specific IP ranges.
-- Visual Studio 2022 Enterprise is a licensed product. Ensure you have the appropriate licensing for your workshop.
 - The VMs are configured with automatic updates enabled.
 - Each VM has a C:\Workshop directory created with a README.txt file for workshop instructions.
 

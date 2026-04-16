@@ -16,7 +16,7 @@ variable "location" {
 }
 
 variable "vm_count" {
-  description = "Number of Visual Studio 2022 VMs to create"
+  description = "Number of VMs to create"
   type        = number
   validation {
     condition     = var.vm_count > 0
@@ -27,7 +27,7 @@ variable "vm_count" {
 variable "vm_name_prefix" {
   description = "Prefix for VM names"
   type        = string
-  default     = "vs2022-vm"
+  default     = "workshop-vm"
 }
 
 variable "dns_name_label" {
@@ -38,7 +38,7 @@ variable "dns_name_label" {
 variable "vm_size" {
   description = "Size of the VM"
   type        = string
-  default     = "Standard_D4s_v3"  # 4 vCPUs, 16 GB RAM - recommended for VS2022
+  default     = "Standard_D4s_v3"  # 4 vCPUs, 16 GB RAM
 }
 
 variable "admin_username" {

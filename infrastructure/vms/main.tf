@@ -85,7 +85,7 @@ resource "azurerm_network_interface" "workshop_vm_nic" {
   }
 }
 
-# Virtual Machines with Visual Studio 2022
+# Virtual Machines
 resource "azurerm_windows_virtual_machine" "workshop_vm" {
   count               = var.vm_count
   name                = "${var.vm_name_prefix}-${count.index + 1}"
@@ -109,11 +109,17 @@ resource "azurerm_windows_virtual_machine" "workshop_vm" {
     disk_size_gb         = 256  # Visual Studio needs more disk space
   }
 
-  # Visual Studio 2022 on Windows Server 2022
+  # Visual Studio 2025 on Windows Server 2022
+  # source_image_reference {
+  #   publisher = "microsoftvisualstudio"
+  #   offer     = "visualstudioplustools"
+  #   sku       = "vs-2025-comm-general-win11-m365-gen2"
+  #   version   = "latest"
+  # }
   source_image_reference {
-    publisher = "microsoftvisualstudio"
-    offer     = "visualstudioplustools"
-    sku       = "vs-2022-comm-general-win11-m365-gen2"
+    publisher = "MicrosoftWindowsDesktop"
+    offer     = "Windows-11"
+    sku       = "win11-22h2-pro"
     version   = "latest"
   }
 

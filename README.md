@@ -5,16 +5,18 @@ Exercises for the Connective Consulting AI workshop.
 # Prerequisites
 
 Using a Connective remote workshop VM:
-- Microsoft Remote Desktop and the ability to connect to an external VM over the standard RDP port (3389)
-- A GitHub Copilot subscription
+- **Microsoft Remote Desktop** and the ability to connect to an external VM over the standard RDP port (3389)
+- An active **GitHub Copilot subscription**
 
 Using your local machine:
-- The latest version of Visual Studio Code
-- .NET 9 SDK
-- .NET 10 SDK preview
-- Node.js (latest LTS version)
-- SQL Server localdb installed (Create the demo database using the /infrastructure/database.sql script)
-- A GitHub Copilot subscription
+- Installed software:
+    - **Visual Studio Code** (latest version) with the **GitHub Copilot Chat extension** installed
+    - **GitHub CLI** (latest version)
+    - **Node.js** version 20 LTS or later
+    - **Java 21** (LTS)
+    - **Maven** (latest version)
+- Ability to **clone a public repository from github.com** (i.e., no firewall or proxy blocking GitHub)
+- An active **GitHub Copilot subscription**
 
 # General Guidelines
 
