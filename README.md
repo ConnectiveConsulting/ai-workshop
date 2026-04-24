@@ -43,6 +43,8 @@ Using your local machine:
 
 4.2 [MCP Servers](exercises/4.2-mcp/README.md)
 
+4.3 [Visual Bug Hunt — Teaching the Agent to See](exercises/4.3-playwright-mcp/README.md)
+
 5.1 [Building Features with AI](exercises/5.1-building-features/README.md)
 
 9.1 [Generating Tests — Edge Case Hunting with AI](exercises/9.1-generating-tests/README.md)
