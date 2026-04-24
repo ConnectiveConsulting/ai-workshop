@@ -26,6 +26,11 @@ Using your local machine:
 - Ability to **clone a public repository from github.com** (i.e., no firewall or proxy blocking GitHub)
 - An active **GitHub Copilot subscription**
 
+Using DevContainers:
+- Installed software:
+    - **Visual Studio Code** (latest version) with the **GitHub Copilot Chat extension** installed
+    - **Docker Desktop** (latest version)
+
 ## Exercise Steps - Remote VM
 
 ### Step 1: Connect to the Remote VM
@@ -89,19 +94,49 @@ Either install the required software by following the instructions below, or ver
 
 1. Install **Maven** from https://maven.apache.org/download.cgi
 
-### Installation script
-
-```Powershell
-
-```
-
 ### Step 2: Log into GitHub Copilot
 
-1.
+1. Open Visual Studio Code
+    - Note we are using Visual Studio *Code*, not full Visual Studio. GitHub Copilot in Visual Studio Code tends to get the latest features before all other IDEs.
+
+1. Click the 'Set up Copilot' button on the welcome screen
+
+![alt text](image-2.png)
+
+1. Click 'Continue with GitHub'
+
+1. Log in using your GitHub account that has a Copilot subscription
+
+1. Click 'Continue' and 'Authorize Visual-Studio-Code'
+
+1. Click 'Open Visual Studio Code' when prompted
 
 ### Step 3: Clone the Workshop Repositories
 
-1.
+1. Open a terminal in Visual Studio Code (Ctrl+`)
+
+1. Navigate to the folder where you want to clone the repositories (e.g., `cd C:\Workshop`)
+
+1. Clone the exercises repository
+    ```bash
+    git clone https://github.com/ConnectiveConsulting/ai-workshop-project.git
+    ```
+
+1. Navigate into the cloned repository and create a personal branch
+    ```bash
+    cd ai-workshop-project
+    git checkout -b user/[your-name-here]
+    ```
+
+### Step 4: (Optional) Open the project in a devcontainer
+
+1. If you have Docker Desktop installed, you can open the project in a devcontainer for a fully pre-configured development environment.
+
+1. In Visual Studio Code, click the green '><' icon in the bottom left corner and select 'Reopen in Container'
+OR
+1. Open the command palette (Ctrl+Shift+P) and select 'Dev Containers: Reopen in Container'
+
+1. Wait for the devcontainer to build and start. This may take several minutes the first time as it needs to build a Docker image with all the necessary tools installed.
 
 ## Summary
 
@@ -111,5 +146,5 @@ This repository has already been cloned to your machine in the C:\Workshop folde
 
 ---
 
-[Next: Project Exploration](../1.2-project-exploration.md)
+[Next: Project Exploration](../1.2-project-exploration/README.md)
 
