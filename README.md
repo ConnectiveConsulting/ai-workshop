@@ -29,23 +29,7 @@ Using your local machine:
 
 1.2 [Project Exploration](exercises/1.2-project-exploration/README.md)
 
-2.1 [Copilot Basics - Generating Unit Tests](exercises/2.1-generating-unit-tests/README.md)
-
-2.2 [Copilot Basics - Prompts & Context](exercises/2.2-copilot-context/README.md)
-
-2.3 [Copilot Basics - Terminal](exercises/2.3-copilot-terminal/README.md)
-
-2.4 [Copilot Basics - Understanding Code](exercises/2.4-understanding-code/README.md)
-
-3.1 [Prompt Engineering](exercises/3.1-prompt-engineering/README.md)
-
-4.1 [Copilot Custom Instructions](exercises/4.1-instructions/README.md)
-
-4.2 [MCP Servers](exercises/4.2-mcp/README.md)
-
-4.3 [Visual Bug Hunt — Teaching the Agent to See](exercises/4.3-playwright-mcp/README.md)
-
-5.1 [Building Features with AI](exercises/5.1-building-features/README.md)
+6.1 [Visual Bug Hunt — Teaching the Agent to See](exercises/6.1-playwright-mcp/README.md)
 
 9.1 [Generating Tests — Edge Case Hunting with AI](exercises/9.1-generating-tests/README.md)
 
