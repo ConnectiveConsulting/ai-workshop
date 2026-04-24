@@ -27,6 +27,8 @@ Using your local machine:
 
 1.1 [Environment Setup](exercises/1.1-setup/README.md)
 
+1.2 [Project Exploration](exercises/1.2-project-exploration/README.md)
+
 2.1 [Copilot Basics - Generating Unit Tests](exercises/2.1-generating-unit-tests/README.md)
 
 2.2 [Copilot Basics - Prompts & Context](exercises/2.2-copilot-context/README.md)
@@ -42,3 +44,7 @@ Using your local machine:
 4.2 [MCP Servers](exercises/4.2-mcp/README.md)
 
 5.1 [Building Features with AI](exercises/5.1-building-features/README.md)
+
+9.1 [Generating Tests — Edge Case Hunting with AI](exercises/9.1-generating-tests/README.md)
+
+11.1 [Capstone — Building a Full Feature with Superpowers](exercises/11.1-superpowers-capstone/README.md)
