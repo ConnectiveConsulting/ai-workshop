@@ -355,4 +355,4 @@ If you still have time:
 
 ---
 
-[Next: Customizing Copilot](../10.1-customizing-copilot)
+[Next: DevOps Log Investigation](../10.1-devops-log-investigation)
