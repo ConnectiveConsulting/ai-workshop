@@ -8,7 +8,7 @@ The goal of this exercise is to set up the development environment for the works
 
 To provide a consistent development environment for all participants, we will use a pre-configured virtual machine (VM) hosted in Azure. This VM will have all the necessary tools and software installed to complete the workshop exercises.
 
-If you prefer, you *can* use your own local environment. In this case, you will need to install the required software and configure your environment to match the workshop VM as closely as possible. However, we will not be able to provide support for issues that arise from using a local environment.
+If you prefer, you *can* use your own local environment. In this case, you will need to install the required software and configure your environment to match the workshop VM as closely as possible. However, we will not be able to provide support for issues that arise from using a local environment. *If you have not already set up your local environment, please use the remote VM option*.
 
 ## Prerequisites
 
@@ -53,18 +53,17 @@ Using DevContainers:
 
 1. Note that the remote VM may take a few moments to initialize after you log in, and may be slow at first.
 
-1. Open Google Chrome and navigate back to these instructions (https://github.com/ConnectiveConsulting/ai-workshop) so you can stay within the browser. **Do not use Microsoft Edge** as Edge requires you to log into a Microsoft account.
+1. Open Internet Explorer and navigate back to these instructions (https://github.com/ConnectiveConsulting/ai-workshop) so you can stay within the browser.
 
 1. Keep this browser window open to follow along with the exercise instructions.
 
-### Step 2: Log into GitHub Copilot
+### Step 2: Log into GitHub Copilot in VS Code
 
 1. Open Visual Studio Code from the desktop shortcut
     - Note we are using Visual Studio *Code*, not full Visual Studio. GitHub Copilot in Visual Studio Code tends to get the latest features before all other IDEs.
 
-1. Click the 'Set up Copilot' button on the welcome screen
-
-![alt text](image-2.png)
+1. Click the 'Accounts' icon in the lower left and select "Sign in to use AI features..."
+![alt text](image-1.png)
 
 1. Click 'Continue with GitHub'
 
@@ -73,6 +72,34 @@ Using DevContainers:
 1. Click 'Continue' and 'Authorize Visual-Studio-Code'
 
 1. Click 'Open Visual Studio Code' when prompted
+
+### Step 3: Open GitHub Copilot CLI
+
+1. Open up a terminal and change to the `c:\workshop\project` folder, or use the terminal shortcut ("AI Workshop Project Terminal") on the desktop
+
+1. Run `copilot` from the terminal
+
+1. Answer "yes" to the "Do you trust the files in this folder?" question
+
+1. When asked if you would like to set up the terminal for multi-line input support ("Would you like to add this key binding to your terminal configuration?"), answer Yes
+
+1. Type in `/login` and hit enter
+
+1. Select "1. GitHub.com" when asked "What account do you want to log into"
+
+1. Ctrl-Click to open the URL provided, or go to https://github.com/login/device
+
+1. Enter the provided code and agree to granting access to Copilot CLI
+
+1. Type in `/clear` and hit enter to start a new session
+
+1. Leave this window open for future exercises
+
+### Complete!
+
+You should now be connected to the remote VM and have GitHub Copilot set up and ready to use in Visual Studio Code.
+
+The repositories for the course are cloned in the `C:\Workshop` directory on the remote VM, so you can navigate there in Visual Studio Code to access the exercises.
 
 ## Exercise Steps - Local Environment
 
@@ -141,8 +168,6 @@ OR
 ## Summary
 
 You should now have a fully functional development environment set up for the workshop.
-
-This repository has already been cloned to your machine in the C:\Workshop folder.
 
 ---
 
