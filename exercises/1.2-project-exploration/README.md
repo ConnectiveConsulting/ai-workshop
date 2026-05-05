@@ -11,7 +11,7 @@
 
 Throughout this course, we'll be working with a shared example project — a **Training Management** application built with a Spring Boot backend and a React frontend. It's not the most exciting app in the world, but hey, at least it's not another to-do list.
 
-In a *normal* course, we'd give you a nice walkthrough of the architecture, how it's built, how to run it, etc. But that's not thinking AI first. Instead, we're going to let Copilot figure all of that out for us — and you might be surprised how well it does.
+In a *normal* course, we'd give you a nice walkthrough of the architecture, how it's built, how to run it, etc. But that's not thinking AI first. Instead, we're going to let Copilot figure all of that out for us.
 
 ## Exercise Steps
 
@@ -25,13 +25,17 @@ In a *normal* course, we'd give you a nice walkthrough of the architecture, how 
     git clone https://github.com/ConnectiveConsulting/ai-workshop-project.git
     ```
 
-1. Open the project folder in **Visual Studio Code**.
+1. Open the project folder in **Visual Studio Code** via File > Open Folder (or `code .` from the terminal).
+
+1. Select `Yes, I trust the authors` if prompted about trusting the workspace.
 
 ### Step 2: Let Copilot Learn the Project
 
 Normally, the first thing you'd do with a new codebase is poke around the folder structure, look for a README, maybe find a Makefile or `docker-compose.yml` and start guessing. We're going to skip all of that and let the AI do the reconnaissance.
 
 1. Open the **Copilot Chat** panel (click the Copilot icon in the sidebar, or press `Ctrl+Alt+I`).
+
+![alt text](image.png)
 
 1. Make sure you are in **Agent** mode. Look at the mode selector dropdown at the bottom of the chat input — it should say **Agent**. If it says "Ask" or "Edit," switch it to **Agent**.
 
@@ -45,55 +49,56 @@ Normally, the first thing you'd do with a new codebase is poke around the folder
 
 1. **Be patient.** The agent is reading the entire project — every file, every folder — and building a holistic understanding of the codebase. Watch the output as it works. You'll see it reading files, analyzing structure, and summarizing what it finds. This is a great peek behind the curtain at how agents think.
 
-1. When it finishes, open the generated `AGENTS.md` file and review it. Pretty cool, right? The agent just wrote itself a cheat sheet for your entire project.
+1. When it finishes, click the `Keep` button to accept the changes. Open the generated `AGENTS.md` file and review it. Pretty cool, right? The agent just wrote itself a cheat sheet for your entire project.
 
 ### Step 3: Generate a Developer README
 
 Now let's put the agent to work on something practical. We need documentation that would help a new developer get up and running.
 
-1. In the Copilot Chat panel (still in **Agent** mode), enter a prompt like:
+1. In the Copilot Chat panel (still in **Agent** mode using the same session), enter a prompt like:
 
     ```
     Generate a README.md for this project aimed at developers. Focus on a quick-start guide:
     what the project does, how to build it, how to run it, and any prerequisites.
     ```
 
-1. Let the agent generate the file. Review what it produces — does it look accurate? Did it figure out the tech stack, the build commands, the right ports?
+1. Let the agent generate the file. Review what it produces — how does it differ from the AGENTS.md? For now they are likely very similar, but as we customize the AGENTS.md in later exercises, you'll see the README become more user-focused while the AGENTS.md becomes more of an internal document for the AI.
 
 ### Step 4: Commit Your Changes (Let the Agent Write the Message)
 
 You've got two shiny new files thanks to the agent — `AGENTS.md` and a fresh developer `README.md`. Let's lock those in before we move on. But we're **AI first**, so we're not going to stop and craft a commit message ourselves. We're going to let the agent do it.
 
-1. In the Copilot Chat panel (still in **Agent** mode), enter a prompt like:
+1. Have Copilot switch to a new branch and commit. We'll name the branch with your name to not conflict with others in the class. In the Copilot Chat panel (still in **Agent** mode), enter a prompt like:
 
     ```
-    Commit the changes in this session to git with an appropriate commit message.
+    Commit the changes in this session to a new user-specific git branch named after me ([your-name-here]) with an appropriate commit message.
     ```
+
+1. Copilot will ask for permission to run git commands. By default, agents are sandboxed and can't make changes to your code or run commands without explicit permission. This is a safety feature to prevent unwanted changes. But in this case, we want to give the agent permission to commit for us. Click on the arrow next to the prompt and select `Enable Auto-Approve...` and accept the prompt. Over this course we will be giving the agent more and more permissions, so this is the first step in that process.
+
+1. For subsequent git actions you can select `Allow` or click the down arrow to select `Always Allow` for specific commands. This is a great time to start thinking about what permissions you want to give your agent. Do you want it to be able to commit code on your behalf? Do you want it to be able to run any terminal command, or only specific ones?
 
 1. Watch what happens. The agent will check the repository state (running `git status` and `git diff`), then write a commit message **based on what it actually did for you in this session** — it already has the full context of what changed and why. No need for you to summarize anything.
 
 1. **Read the commit message it generated.** Notice how specific it is — it's not a lazy "updated docs." It calls out the new `AGENTS.md` and the developer README because the agent was *there* when those files were created. This is one of those small wins that adds up fast: the session context becomes the commit context, for free.
 
-1. Verify the commit landed by asking:
-
-    ```
-    Show me the most recent commit.
-    ```
-
 ### Step 5: Run the Project (AI First!)
 
 Now here's the fun part. We *could* read that README we just generated and follow the instructions manually. But we're **AI first**, remember?
 
+1. Start a new chat session in Copilot (click the `+` icon at the top of the chat panel or hit Ctrl-N).
+
 1. In the Copilot Chat panel, enter a prompt like:
 
     ```
-    Start up the project — both the backend and frontend. When it's running,
-    tell me the URL to open the frontend in my browser.
+    Start up the project - both the backend and frontend. When it's running, tell me the URL to open the frontend in my browser.
     ```
 
 1. Watch as the agent figures out how to build and launch both parts of the application. It will run terminal commands, monitor the output, and tell you when things are ready.
 
     > **Note:** If your machine is missing a required tool (like Node.js, Java, or Maven), the agent will probably notice and try to install it or fix the issue. This is interesting to watch, but can be a rabbit hole. If you see the agent struggling with environment setup for more than a couple of minutes, let an instructor know so we don't burn too much time troubleshooting your local setup.
+
+    > **Also Note:** You may get a Windows firewall prompt when the backend starts up to allow the JDK to communicate on the network. This is because the agent is running the backend server on your machine, and it needs permission to allow that network traffic. Be sure to click "Allow access" so that the agent can confirm when the backend is up and running.
 
 1. Once the agent reports that the app is running, open the frontend URL it gives you in your browser (it's typically `http://localhost:5173`).
 
@@ -105,11 +110,11 @@ Now here's the fun part. We *could* read that README we just generated and follo
 
 Now that you've seen the app running, let's dig into the code. Copilot has a handy shortcut for when you're staring at a block of code and thinking "...what?" — the `/explain` command. It works right in the editor without needing to describe what you're looking at.
 
-1. Open a **new chat** in Copilot (click the `+` icon at the top of the chat panel).
+1. Open a **new chat** in Copilot (click the `+` icon at the top of the chat panel or hit Ctrl-N).
 
 1. In the VS Code explorer, open `frontend/src/pages/CourseDetail.jsx`.
 
-1. Select lines 21–39 — this is the `useEffect` block that uses `Promise.all` to fetch course data and registrations in parallel. There's a lot going on here if you're not used to React.
+1. Select lines 20–39 — this is the `useEffect` block that uses `Promise.all` to fetch course data and registrations in parallel. There's a lot going on here if you're not used to React.
 
 1. With that code selected, type the following in the Copilot Chat panel and press Enter:
 
@@ -117,7 +122,7 @@ Now that you've seen the app running, let's dig into the code. Copilot has a han
     /explain
     ```
 
-    That's it — just the command. Copilot will use your selected code as context and walk you through what it does. No need to copy-paste or describe the code yourself.
+    Notice that above the chat entry textbox it says "CourseDetail.jsx:20-39. Copilot automatically added the selected code to its context and walk you through what it does. No need to copy-paste or describe the code yourself.
 
 1. Now try it with some backend code. Open `backend/src/main/java/.../registration/RegistrationService.java` and select the `register` method (the block that checks capacity and creates a registration). Run `/explain` again.
 
@@ -172,7 +177,7 @@ Now that you've seen the app running, let's dig into the code. Copilot has a han
     the most educational parts of this codebase for me to explore.
     ```
 
-    Yes, you can ask the AI to figure out what *you* should learn. We're living in the future.
+    Using AI for customized learning is an excellent way to quickly get up to speed on unfamiliar technologies or codebases. The agent can tailor its responses based on your experience level and interests.
 
 ### Step 8: Clean Up
 
