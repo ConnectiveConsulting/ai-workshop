@@ -2,11 +2,11 @@
 
 ## Learning Objectives
 
-- Work with **Copilot CLI** (not just the VS Code chat panel) as a full-featured agent environment
-- Install and use the **Copilot plugin marketplace** to extend your agent with community skills
-- Use the **`superpowers`** plugin to turn a vague feature idea into a designed, implemented, end-to-end change
-- Experience an agent-driven *brainstorming → requirements → design → code* workflow — instead of jumping straight to code
-- Embrace the chaos: different conversations, different questions, different paths, same underlying workflow
+- Step beyond the IDE chat panel — the CLI is a richer environment for plugins, long sessions, and composable agentic workflows
+- Use the plugin/marketplace ecosystem to extend an agent with community skills, not just first-party features
+- Embrace a **brainstorm → requirements → design → code** workflow instead of jumping straight to implementation
+- Sit in the passenger seat for high-ambiguity work and let the agent drive the structure
+- Accept that AI-driven workflows are non-linear: different conversations, different paths, same destination
 
 ## Overview
 
@@ -24,23 +24,21 @@ This is how high-ambiguity features get built in an AI-first workflow. Not with 
 
 Up to now you've been in the VS Code Copilot Chat panel. For this exercise we want a terminal-first session — plugins, long conversations, and agentic workflows live more happily there.
 
-1. If you haven't installed Copilot CLI yet, install it globally via npm (Node 20+ was set up in Exercise 1.1):
-
-    ```bash
-    npm install -g @github/copilot
-    ```
-
 1. Open a fresh terminal and `cd` into the workshop project:
 
     ```bash
     cd D:/projects/Connective/github/training-management-initial
     ```
 
+    or, use the terminal shortcut on the desktop of the lab VMs
+
 1. Make sure you're on your personal branch (**not** `main`):
 
     ```bash
     git checkout user/[your-name-here]
     ```
+
+    **This is important as the superpowers skills automatically determine task boundaries and will commit work to the branch as they go.**
 
 1. Start a Copilot CLI session:
 
@@ -50,25 +48,27 @@ Up to now you've been in the VS Code Copilot Chat panel. For this exercise we wa
 
     First time? You'll get a browser-based GitHub auth flow. Follow it through and come back to the terminal. You should land at a friendly `>` prompt waiting for input.
 
-    > **Why leave VS Code?** The chat panel is optimized for editing. The CLI is optimized for *composing* — plugins, long-running sessions, scripting, piping, and generally treating the agent as a tool you build workflows around rather than a sidebar you click on. For a feature this open-ended, the CLI is just a better fit. Also: it is genuinely fun.
+    > **Why leave VS Code?** The chat panel is optimized for editing. The CLI is optimized for *composing* — plugins, long-running sessions, scripting, piping, and generally treating the agent as a tool you build workflows around rather than a sidebar you click on. This open-ended feature is a good chance to explore CLI.
 
 ### Step 2: Install the Superpowers Plugin
 
 `superpowers` is a community plugin (from [@obra](https://github.com/obra)) that ships a library of *skills* — prompted behaviours the agent triggers on specific kinds of tasks. The ones we care about today are the **brainstorming**, **requirements**, and **design-first** skills, which kick in on new-feature prompts and walk through thinking, spec-ing, and sketching *before* any code is written.
 
-1. Inside your Copilot CLI session, add the superpowers marketplace:
+Plugin management in Copilot CLI happens *inside* the session via slash commands — not from your shell. You should still be at the `>` prompt from Step 1; if you're not, run `copilot` again to get back there.
+
+1. At the Copilot `>` prompt, add the superpowers marketplace:
 
     ```
-    copilot plugin marketplace add obra/superpowers-marketplace
+    /plugin marketplace add obra/superpowers-marketplace
     ```
 
-1. Install the plugin:
+1. Install the plugin (still at the `>` prompt):
 
     ```
-    copilot plugin install superpowers@superpowers-marketplace
+    /plugin install superpowers@superpowers-marketplace
     ```
 
-1. Confirm it landed. You should see a short confirmation message; if you want to be thorough, ask Copilot `/plugin list` (or equivalent) and verify `superpowers` shows up.
+1. Confirm it landed. You should see a short confirmation message; if you want to be thorough, run `/plugin` and verify `superpowers` shows up in the list.
 
 ### Step 3: Pick a Feature
 
@@ -129,7 +129,7 @@ This is the one checkpoint that matters in this exercise. Without the plugin act
 1. If you **don't** see any sign that superpowers is engaging — the agent just says "Sure! I'll add a `waitlist` table and…" and starts writing code — something's wrong. Probably the plugin didn't install cleanly, or your prompt didn't trip any of its triggers. Bail out:
 
     - Press **Esc** to cancel the current turn (or **Ctrl+C** if Esc doesn't do it).
-    - Confirm the plugin is installed (`copilot plugin list` or equivalent).
+    - Confirm the plugin is installed by running `/plugin` at the Copilot prompt and checking that `superpowers` is listed.
     - Try again with slightly more leading language, e.g. *"Let's brainstorm a new feature to add course waitlists."* The word "brainstorm" is a reliable trigger.
 
 1. Once superpowers is clearly driving the session, carry on.
@@ -139,6 +139,12 @@ This is the one checkpoint that matters in this exercise. Without the plugin act
 From here it's a genuine back-and-forth. Everyone's session is going to look different — so rather than follow a script, just engage with whatever conversation you find yourself in. Your agent will probably do some mix of the following:
 
 - **Ask clarifying questions.** How should a waitlist behave when someone cancels? Who can see the dashboard? Should a prerequisite be required or just recommended? Answer honestly. If you don't know, say so — the agent can propose options and you pick.
+
+    > **You're allowed to delegate.** Not every question deserves a strong opinion from you. For low-stakes decisions you genuinely don't care about — colour of a button, exact wording of an error toast, whether a list sorts ascending or descending by default — it's perfectly fine to reply with something like *"no preference, use your best judgement"* or *"you pick — go with whatever's most conventional."* The agent will lean on its training data (which has read a *lot* of well-designed software) and make a reasonable call. Save your real opinions for the decisions that actually matter to your product.
+
+    > **Keep the scope small.** When the agent asks about edge cases, optional features, or "should we also support X?" — your default answer in this exercise should be **no, not today**. Cut ruthlessly. Copilot is more than happy to spend 60+ minutes crunching through a feature you defined generously, and we don't have 60 minutes. A waitlist that auto-promotes is great; a waitlist that auto-promotes *and* emails *and* handles partial cancellations *and* shows position history is a feature that finishes after lunch. Push the agent toward the smallest version of your feature that's still end-to-end real.
+    >
+    > In the real world, when a feature genuinely is that big, advanced AI users don't sit and wait for a single agent — they spin up **multiple agents in separate git worktrees** and let them crunch in parallel, knocking out a week's worth of work in an afternoon. That's a workflow for another day, but it's worth knowing the escape hatch exists.
 
 - **Produce artifacts *before* code.** Expect a requirements doc, a design doc, a data-model sketch, maybe an ASCII wireframe or a markdown UX spec. *Actually read them.* Push back on anything that doesn't match your intent. This is where the feature gets designed, and your input here matters more than any code review later.
 

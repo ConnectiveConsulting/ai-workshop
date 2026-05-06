@@ -2,10 +2,11 @@
 
 ## Learning Objectives
 
-- Get the workshop project set up and running on your machine
-- Use Copilot Agent mode to understand, document, and run an unfamiliar codebase
-- Begin building the habit of reaching for AI *first* when approaching new code
-- Use the `/explain` command and **Ask** mode to explore and understand unfamiliar code
+- Reach for AI *first* when approaching unfamiliar code instead of grinding through it manually
+- Treat the agent as a collaborator that can read, document, and run a codebase faster than you can
+- Recognize that different chat modes (Agent, Ask, `/explain`) suit different kinds of exploration
+- Use AI to bootstrap project documentation that benefits both humans and future agent sessions
+- Notice where the agent gets things wrong — you're still the pilot
 
 ## Overview
 

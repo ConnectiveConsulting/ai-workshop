@@ -2,12 +2,11 @@
 
 ## Learning Objectives
 
-- See how the **Playwright MCP** server is registered with the **Copilot CLI** so the agent can drive a real browser
-- Use browser-based MCP tools from a CLI agent session to let it *see* a running app — not just read its source
-- Reproduce a bug report at the viewport the customer is actually using, not the one on your monitor
-- Diagnose a responsive CSS bug that is invisible from both desktop-only testing and source-only review
-- Verify a fix at multiple viewport widths before declaring the ticket closed
-- Feel the gap between "reads code" and "sees rendered output across device sizes," and why closing that gap unlocks a whole class of bug fixes
+- Understand how MCP servers extend an agent's capabilities — in this case, by giving it a real browser
+- Recognize that some bugs only exist at runtime, and that agents which can *see* the rendered app find an entire class of issues that source-only review cannot
+- Reproduce issues in the conditions the customer is actually in (viewport, device, environment), not yours
+- Use the same visual feedback loop to verify a fix that you used to find the bug
+- Codify durable habits in `AGENTS.md` so future sessions default to the right approach
 
 ## Overview
 

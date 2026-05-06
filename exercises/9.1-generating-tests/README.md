@@ -2,11 +2,11 @@
 
 ## Learning Objectives
 
-- Use Copilot Agent mode to scaffold a test project from scratch in an unfamiliar stack — without knowing the test framework yourself
-- Feel the *practical* difference between a fast general-purpose model at low thinking effort vs. a reasoning model at high thinking effort, on the same task
-- Use AI to surface subtle edge cases (leap years, DST transitions, race conditions, null/empty inputs, type coercion) that a human reviewer would almost certainly miss
-- Use Agent mode to commit *and push* changes safely — to a personal branch, never to main
-- Close the feedback loop: teach the agent (via `AGENTS.md`) to always run these tests on future changes (meta-prompting!)
+- Use AI to work productively in stacks and frameworks you don't know yourself
+- Develop intuition for when to spend on a reasoning model vs. a fast/cheap one — model selection is a real skill
+- Recognize that AI surfaces subtle edge cases (leap years, timezones, race conditions, weird inputs) that human reviewers routinely miss
+- Build safe automation patterns when handing the agent destructive operations like commit and push
+- Practice **meta-prompting** — codify what you learn into `AGENTS.md` so the project itself gets smarter over time
 
 ## Overview
 

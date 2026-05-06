@@ -2,13 +2,11 @@
 
 ## Learning Objectives
 
-- Use Copilot Agent mode to reach beyond your editor and investigate **live cloud resources** (Azure Blob Storage)
-- Triage a vague production bug report by routing it to the agent *first*, not after an hour of grep
-- Practice giving the agent the *minimum sufficient context* to do real cross-service investigation (frontend → backend → cloud logs)
-- Skip the soul-crushing manual ritual of downloading log archives, unzipping them, and `grep`-ing through 47 timestamped files
-- Demand evidence — make the agent quote real log lines, not hallucinate stack traces from the source code
-- Decide what an agent should and should *not* be allowed to do autonomously when production is on the other end of the prompt
-- Have the agent **codify the entire workflow as a reusable skill**, so future production investigations start with one command instead of a fresh prompt
+- Point AI at *production* — agents can reach beyond the editor into cloud resources and live systems
+- Triage vague bug reports by routing them to the agent first, with the minimum sufficient context to investigate across the whole stack
+- Demand evidence — make the agent quote real log lines instead of hallucinating stack traces from the source code
+- Decide deliberately what an agent should and shouldn't be allowed to do autonomously when production is on the other end
+- Codify hard-won workflows as reusable skills so the next on-call ticket starts with one prompt, not a fresh investigation
 
 ## Overview
 

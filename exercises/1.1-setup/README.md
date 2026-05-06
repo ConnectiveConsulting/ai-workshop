@@ -2,7 +2,8 @@
 
 ## Learning Objectives
 
-The goal of this exercise is to set up the development environment for the workshop exercises. This includes connecting to a workshop VM, or configuring your local environment.
+- Have a working development environment ready for the rest of the workshop, either on the provided VM or locally
+- Get oriented with the core toolchain we'll lean on throughout the course — VS Code with Copilot, and the Copilot CLI
 
 ## Overview
 
