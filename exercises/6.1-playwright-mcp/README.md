@@ -2,8 +2,8 @@
 
 ## Learning Objectives
 
-- Install and configure the **Playwright MCP** server so Copilot can drive a real browser
-- Use browser-based MCP tools to let an agent *see* a running app — not just read its source
+- See how the **Playwright MCP** server is registered with the **Copilot CLI** so the agent can drive a real browser
+- Use browser-based MCP tools from a CLI agent session to let it *see* a running app — not just read its source
 - Reproduce a bug report at the viewport the customer is actually using, not the one on your monitor
 - Diagnose a responsive CSS bug that is invisible from both desktop-only testing and source-only review
 - Verify a fix at multiple viewport widths before declaring the ticket closed
@@ -25,57 +25,77 @@ That's it. No screenshots. No repro steps. No device information. Welcome to rea
 
 On your desktop the page looks fine, so if you only know how to read source and poke around in your own browser at 1440px wide, you are about to have a bad day. But with Playwright MCP, the agent can resize its browser to a phone viewport and see exactly what the customer sees — and then fix it.
 
+> **Heads up: this is a Copilot CLI exercise.** We're driving everything from the terminal, not from the VS Code chat panel. The MCP server we'll be using is registered at the CLI's user scope (more on that in Step 2), and the IDE chat panel reads MCP servers from a different file — so Playwright wouldn't even show up over there. Keep your editor open if you want to peek at code, but the agent prompts all go to the CLI.
+
 ## Exercise Steps
 
-### Step 1: Make Sure the App Is Running
+### Step 1: Start a CLI Session and Get the App Running
 
-If you already have the app running from a previous exercise, skip ahead to Step 2.
+We'll use the **Copilot CLI** to start the project, just like you did in Exercise 1.2 — except this time we're driving from the terminal. The same CLI session you start here is the one you'll use for the entire exercise, so keep this terminal open.
 
-1. Open the workshop project (`ai-workshop-project`) in VS Code.
-
-1. Make sure you're on your personal branch:
-
-    ```bash
-    git checkout user/[your-name-here]
-    ```
-
-1. In **Agent** mode, have the agent start things up:
+1. Open a fresh terminal, navigate to the workshop project, and start a Copilot CLI session:
 
     ```
-    Start both the frontend and backend. When the frontend is ready, tell me the URL.
+    cd path\to\ai-workshop-project
+    copilot
     ```
 
-1. Open the app in your regular browser at the URL it reports (typically `http://localhost:5173`). If it's empty, click **Seed Sample Data** in the admin area (`/admin`) so the home page has some courses on it.
+1. **If the app isn't already running from a previous exercise**, ask the CLI to start it:
+
+    ```
+    Start up the project - both the backend and frontend. When it's running,
+    tell me the URL to open the frontend in my browser.
+    ```
+
+    The agent will run the dev commands, watch the logs, and tell you when both are up. If you get a Windows firewall prompt for the JDK, click "Allow access" so the agent can confirm the backend is reachable.
+
+    If the app *is* already running from a previous exercise, just tell the agent that and ask it to confirm — e.g., "The backend should be up at localhost:8080 and the frontend at localhost:5173. Confirm both are reachable." Then move on.
+
+1. Open the app in your regular browser at the frontend URL (typically `http://localhost:5173`). If it's empty, click **Seed Sample Data** in the admin area (`/admin`) so the home page has some courses on it.
 
 1. Take a quick look at the home page. It probably looks fine to you — clean grid of course cards, nothing obviously broken. That's part of the setup. The issue only shows up under certain conditions, and you may not catch it by eyeballing it in your desktop browser. **Resist the temptation to go hunting yourself.** Let the agent do the work.
 
-### Step 2: Install the Playwright MCP Server
+### Step 2: Peek at the Already-Installed Playwright MCP Server
 
-MCP servers are installed once and can then be used across any Copilot session. We're going to install Playwright MCP at **user scope** so it's available on every project going forward, not just this one.
+Good news: we already installed the Playwright MCP server on your workshop machine for you, so you can skip the wrestling-with-config part and get straight to the fun stuff. But before we move on, let's open the config file so you can see what an MCP server registration actually looks like under the hood — it's surprisingly small.
 
-1. Open the **Copilot Chat** panel and switch to **Agent** mode.
+1. Open **File Explorer** and navigate to `C:\Users\workshopadmin\.copilot`. This folder is where your user-specific Copilot settings and customizations live — MCP server registrations, your AGENTS.md overrides, custom skills, and so on. Anything you put here applies to every project on this machine, not just one repo.
 
-1. Prompt:
+1. Open the `mcp-config.json` file. It should look like this:
 
-    ```
-    Register the Microsoft Playwright MCP server (npm package @playwright/mcp)
-    in my Copilot MCP configuration at user scope so it's available across
-    all projects. After it's registered, verify the new tools are available
-    by listing them. Do NOT use it to do anything yet — just confirm
-    it's wired up.
+    ```json
+    {"mcpServers":{"playwright":{"args":["@playwright/mcp@latest"],"command":"npx"}}}
     ```
 
-1. The agent will edit your MCP configuration (typically `~/.config/github-copilot/mcp.json` or similar, depending on your OS and Copilot version) and then list the new tools. You should see a family of tools prefixed with something like `playwright_` — navigate, click, type, screenshot, snapshot, and friends.
+1. Take a moment to read through the syntax. There isn't much to it, and that's kind of the point. A couple of things worth noticing:
 
-    > **Why user scope?** Playwright MCP is useful on essentially every web project. Installing it globally means you don't re-register it every time you `cd` into a new repo. Per-project scope is great for MCPs that are specific to one codebase. Global scope is better for tools that are generally useful, like a browser.
+    - **MCP servers come in two flavors.** Some are remote websites that speak the MCP protocol over HTTP. Others — like this one — are local processes that speak it over stdio. The agent doesn't really care which is which; it just needs to know how to reach the server.
+    - **This particular MCP server is just an npm package.** `@playwright/mcp` is published on the public npm registry. We use `npx` to download and run it on demand — no global install needed. The agent simply runs whatever `command` and `args` you put here to start the server, then talks to it over stdio.
+    - That's the whole trick: **you give the agent a way to start a process; the process speaks MCP; the agent gets new tools.** Demystifying, right?
 
-1. If Copilot asks you to reload the window or restart the chat session to pick up the new MCP server, do that. Then open a **fresh chat** so the new tools are available in your session.
+1. Close the file without saving. We didn't change anything — we just wanted you to see the wiring before we go use it. (If you accidentally edited it, hit Ctrl+Z until it looks like the original, or just don't save.)
 
-### Step 3: Point the Agent at the App
+    > **Why pre-install?** In a real engineering org you'd register MCP servers yourself, often at user scope so they're available across every project — exactly the kind of thing your onboarding doc or platform team should hand you. We did it for you on these workshop machines purely to save time, not because the install is hard. The actual registration is exactly the one-line snippet you just looked at.
+
+### Step 3: Verify Playwright MCP Is Loaded
+
+The CLI session you started in Step 1 should already have Playwright MCP available — it's wired into the user-scope config you just looked at, so every CLI session on this machine picks it up automatically. Let's confirm.
+
+1. Pop back over to your CLI session and run:
+
+    ```
+    /mcp
+    ```
+
+    You should see `playwright` listed with a healthy status and a family of tools (navigate, click, take_screenshot, resize, snapshot, and friends). If it's missing or shows an error, something's off with the registration we looked at in Step 2 — flag a workshop instructor before you spin your wheels.
+
+1. From here on out, every "prompt" in this exercise goes into this CLI session. If you've been bouncing between the IDE chat panel and the CLI in earlier exercises, this is one of those exercises where it really has to be the CLI.
+
+### Step 4: Point the Agent at the App
 
 Let's confirm the agent can actually reach the running app with its new eyes.
 
-1. In Agent mode, prompt:
+1. At the CLI prompt, type:
 
     ```
     Using the Playwright MCP tools, open http://localhost:5173 in the browser,
@@ -87,11 +107,11 @@ Let's confirm the agent can actually reach the running app with its new eyes.
 
 1. Take a quick look at the screenshot too, just to confirm the page loaded correctly (courses visible, nav bar at the top, etc.). Still, try not to stare too hard — you're not the detective today.
 
-### Step 4: Forward the Bug Report to the Agent
+### Step 5: Forward the Bug Report to the Agent
 
 Now the interesting part. We're going to hand the agent the same thin bug report you'd get from a real support queue — and see if it knows what to do with it.
 
-1. Paste this verbatim into Copilot Chat (Agent mode, Playwright MCP available):
+1. Paste this verbatim into your CLI session:
 
     ```
     We just got a support ticket: "Mobile users are saying the home page
@@ -128,7 +148,7 @@ Now the interesting part. We're going to hand the agent the same thin bug report
     >
     > - At mobile viewport widths (say 375px wide), the home page has severe horizontal overflow. The course cards are way wider than the screen. The user has to scroll sideways to see any card in full, and the layout looks completely broken — classic "this website doesn't work on my phone" complaint. The cause is in the grid CSS for the course list.
 
-### Step 5: Root-Cause It
+### Step 6: Root-Cause It
 
 If the agent correctly spotted a visual issue but didn't chase it down to a specific CSS rule, push it one level deeper. Seeing is the first half; naming the cause is the second half.
 
@@ -152,7 +172,7 @@ If the agent correctly spotted a visual issue but didn't chase it down to a spec
 
 1. Read the agent's explanation. If it's doing its job, it should be able to tell you not just *what* rule is wrong, but *why* the rule breaks at mobile widths specifically — the math behind how the grid computes its column widths given the rule's inputs and the available viewport.
 
-### Step 6: Fix It — and Verify Visually at Mobile Width
+### Step 7: Fix It — and Verify Visually at Mobile Width
 
 Now we commit the fix, and we verify it with the **same tools** we used to find it.
 
@@ -179,7 +199,7 @@ Now we commit the fix, and we verify it with the **same tools** we used to find 
 
 1. Review both screenshots yourself. The before/after comparison is the point — this is what a tight visual-feedback loop feels like when the AI is also the one closing the loop.
 
-### Step 7: Close the Loop (Teach AGENTS.md)
+### Step 8: Close the Loop (Teach AGENTS.md)
 
 Remember the workshop's #1 habit: **close the feedback loop**. We just taught the agent how to use a browser *and* how to test at multiple viewport widths. Let's make sure it doesn't forget by next Tuesday.
 
@@ -197,7 +217,7 @@ Remember the workshop's #1 habit: **close the feedback loop**. We just taught th
 
 1. Review the diff. Two lines is plenty. A future agent session will now know to reach for the browser instead of reading CSS and hoping.
 
-### Step 8: Commit
+### Step 9: Commit
 
 1. Prompt:
 
@@ -213,7 +233,7 @@ Remember the workshop's #1 habit: **close the feedback loop**. We just taught th
 
 Take a step back. In this exercise you:
 
-- Installed the Playwright MCP server at user scope and gave your agent a real browser
+- Saw how the Playwright MCP server is registered with the Copilot CLI at user scope, and started a CLI session that gave your agent a real browser
 - Handed your agent a realistic, thin support ticket and watched it diagnose the problem at the viewport width that mattered
 - Found a responsive CSS bug that is effectively invisible from desktop-only review — and *also* invisible from a code-only review
 - Had the agent propose, apply, and *visually verify* a fix at both mobile and desktop widths
