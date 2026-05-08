@@ -12,7 +12,7 @@
 
 So far in this course we've mostly been using AI to *understand* code. Now we're going to use it to *verify* code — by generating tests.
 
-Here's the dirty little secret of test writing: most developers are quietly bad at it. Not because we don't know how to write tests — because we can't see around corners. We write tests for the cases we thought of when we wrote the code. The cases we *didn't* think of are, by definition, the ones that bite us in production at 3 AM on a long weekend.
+Here's the dirty little secret of test writing: most developers are quietly bad at it. We write tests for the cases we thought of when we wrote the code. The cases we *didn't* think of are, by definition, the ones that bite us in production at 3 AM on a long weekend.
 
 This is where AI earns its keep. LLMs have read millions of real-world bugs — leap year failures, DST spring-forwards, timezone disasters, Unicode in names, integer overflow, race conditions, empty-string form submissions — and they'll happily suggest tests for every one of them. If you ask the right model, the right way.
 
@@ -36,7 +36,7 @@ In this exercise you'll:
     - **Backend** = Java / Spring Boot / Maven → you'll be testing `RegistrationService.java` (the class that handles student registrations and capacity checks).
     - **Frontend** = React / Vite → you'll be testing `CourseDetail.jsx` (the page that displays a course and handles the registration form).
 
-    Both files have a lot of business logic crammed into them. Both have at least one *delicious* edge case hiding in plain sight. No peeking ahead.
+    Both files have a lot of business logic crammed into them. Both have at least one edge case hiding in plain sight. No peeking ahead.
 
 1. Open the workshop project in VS Code if it isn't already, and make sure you're on your personal branch:
 
@@ -140,9 +140,7 @@ Let's prompt like a tired developer at 4:45 PM on a Friday.
 
 ### Step 6: Find What the Lazy Prompt Missed
 
-1. Open the generated test file(s) and read them. Slowly. *Slower than that.*
-
-1. Ask yourself:
+1. Open the generated test file(s) and read them. Ask yourself:
 
     - What obvious cases did it cover? (Happy path? Course not found? Course full?)
     - What edge cases feel like they're **not** there?

@@ -104,7 +104,9 @@ Let's confirm the agent can actually reach the running app with its new eyes.
 
 1. Watch the tool calls. The agent will navigate, snapshot the page, and give you a short description. Congratulations — your agent just *saw your app* for the first time.
 
-1. Take a quick look at the screenshot too, just to confirm the page loaded correctly (courses visible, nav bar at the top, etc.). Still, try not to stare too hard — you're not the detective today.
+1. Take a quick look at the screenshot using VS Code (it will be in the root of the project), just to confirm the page loaded correctly (courses visible, nav bar at the top, etc.). Still, try not to stare too hard — you're not the detective today.
+
+1. Keep the browser window that Playwright created open. This is the agent's viewport into the app, and it will use this same window for the rest of the exercise.
 
 ### Step 5: Forward the Bug Report to the Agent
 
