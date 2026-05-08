@@ -35,7 +35,8 @@ We'll use the **Copilot CLI** to start the project, just like you did in Exercis
 1. Open a fresh terminal, navigate to the workshop project, and start a Copilot CLI session:
 
     ```
-    cd path\to\ai-workshop-project
+    cd C:\Workshop\project              # on the lab VM
+    cd C:\workshop\ai-workshop-project  # on your local machine (example path — use wherever you cloned it)
     copilot
     ```
 
@@ -54,7 +55,13 @@ We'll use the **Copilot CLI** to start the project, just like you did in Exercis
 
 1. Take a quick look at the home page. It probably looks fine to you — clean grid of course cards, nothing obviously broken. That's part of the setup. The issue only shows up under certain conditions, and you may not catch it by eyeballing it in your desktop browser. **Resist the temptation to go hunting yourself.** Let the agent do the work.
 
-### Step 2: Peek at the Already-Installed Playwright MCP Server
+### Step 2: Inspect (or Install) the Playwright MCP Server
+
+The MCP server registration is just a small JSON snippet — you'll see how small in a moment. The lab VMs have it pre-installed; if you're on your own machine you'll register it yourself in this step (it's quick). Either way, the goal is the same: by the end of Step 2, your Copilot CLI knows how to launch Playwright MCP, and you've seen the under-the-hood config that makes it tick.
+
+Pick the path that matches your setup.
+
+#### Path A — Lab VM (already installed)
 
 Good news: we already installed the Playwright MCP server on your workshop machine for you, so you can skip the wrestling-with-config part and get straight to the fun stuff. But before we move on, let's open the config file so you can see what an MCP server registration actually looks like under the hood — it's surprisingly small.
 
@@ -74,7 +81,46 @@ Good news: we already installed the Playwright MCP server on your workshop machi
 
 1. Close the file without saving. We didn't change anything — we just wanted you to see the wiring before we go use it. (If you accidentally edited it, hit Ctrl+Z until it looks like the original, or just don't save.)
 
-    > **Why pre-install?** In a real engineering org you'd register MCP servers yourself, often at user scope so they're available across every project — exactly the kind of thing your onboarding doc or platform team should hand you. We did it for you on these workshop machines purely to save time, not because the install is hard. The actual registration is exactly the one-line snippet you just looked at.
+    > **Why pre-install?** In a real engineering org you'd register MCP servers yourself, often at user scope so they're available across every project — exactly the kind of thing your onboarding doc or platform team should hand you. We did it for you on these workshop machines purely to save time, not because the install is hard. The actual registration is exactly the one-line snippet you just looked at — and it's exactly what your local-machine classmates are doing for themselves right now.
+
+#### Path B — Local machine (install it yourself)
+
+You're going to do exactly what's pre-baked on the lab VMs: drop a small JSON snippet into your user-scope Copilot config file. Two ways to do it — pick whichever you prefer.
+
+**Option 1 — Let Copilot CLI add it interactively.** This is the easiest path. At the Copilot CLI `>` prompt (the session you started in Step 1), run:
+
+```
+/mcp add
+```
+
+The CLI walks you through it. When prompted, name the server `playwright`, set the type to `local`, set the command to `npx`, and set the args to `@playwright/mcp@latest`. That's it.
+
+**Option 2 — Edit the config file by hand.** Open `%USERPROFILE%\.copilot\mcp-config.json` in your editor. If the file (or the `.copilot` folder) doesn't exist, create it. Add the following:
+
+```json
+{
+  "mcpServers": {
+    "playwright": {
+      "type": "local",
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "tools": ["*"]
+    }
+  }
+}
+```
+
+If you already have other MCP servers in this file, just add `playwright` as another entry under `mcpServers` — don't overwrite the file.
+
+After you've added the server (either option), take a moment to read the snippet. There isn't much to it, and that's kind of the point:
+
+- **MCP servers come in two flavors.** Some are remote websites that speak the MCP protocol over HTTP. Others — like this one — are local processes that speak it over stdio. The agent doesn't really care which is which; it just needs to know how to reach the server.
+- **This particular MCP server is just an npm package.** `@playwright/mcp` is published on the public npm registry. We use `npx` to download and run it on demand — no global install needed. The agent simply runs whatever `command` and `args` you put here to start the server, then talks to it over stdio.
+- That's the whole trick: **you give the agent a way to start a process; the process speaks MCP; the agent gets new tools.** Demystifying, right?
+
+Now restart your Copilot CLI session so it picks up the new server registration: hit `Ctrl+C` (or type `/exit`) to leave the session, then run `copilot` again from the same project folder.
+
+> **What you just did, in one sentence:** you registered Playwright MCP at *user scope* — meaning every Copilot CLI session on your machine, in any project, will now have a browser available. That's the same scope the lab VMs use, and it's a sensible default for tools you'd want everywhere.
 
 ### Step 3: Verify Playwright MCP Is Loaded
 

@@ -32,11 +32,11 @@ Using DevContainers:
     - **Visual Studio Code** (latest version) with the **GitHub Copilot Chat extension** installed
     - **Docker Desktop** (latest version)
 
-## Exercise Steps - Remote VM
+## Exercise Steps - **Remote VM Version**
 
 ### Step 1: Connect to the Remote VM
 
-> Note - if you have a .rdp file from the instructor you can skip steps 2-5
+> Note - if you have a .rdp file from the instructor you can skip steps 1-5
 
 1. Open MS Remote Desktop (Start > Search > Remote Desktop)
 
@@ -54,7 +54,7 @@ Using DevContainers:
 
 1. Note that the remote VM may take a few moments to initialize after you log in, and may be slow at first.
 
-1. Open Internet Explorer and navigate back to these instructions (https://github.com/ConnectiveConsulting/ai-workshop) so you can stay within the browser.
+1. Open a browser and navigate back to these instructions (https://github.com/ConnectiveConsulting/ai-workshop) so you can stay within the browser.
 
 1. Keep this browser window open to follow along with the exercise instructions.
 
@@ -73,6 +73,8 @@ Using DevContainers:
 1. Click 'Continue' and 'Authorize Visual-Studio-Code'
 
 1. Click 'Open Visual Studio Code' when prompted
+
+1. Open the project folder at `C:\Workshop\project` in Visual Studio Code (File > Open Folder)
 
 ### Step 3: Open GitHub Copilot CLI
 
@@ -102,7 +104,7 @@ You should now be connected to the remote VM and have GitHub Copilot set up and 
 
 The repositories for the course are cloned in the `C:\Workshop` directory on the remote VM, so you can navigate there in Visual Studio Code to access the exercises.
 
-## Exercise Steps - Local Environment
+## Exercise Steps - **Local Environment Version**
 
 ### Step 1: Install Required Software
 
@@ -112,9 +114,7 @@ Either install the required software by following the instructions below, or ver
 
 1. Install **Visual Studio Code** from https://code.visualstudio.com/
 
-1. Install the **GitHub Copilot Chat extension** from the Visual Studio Code marketplace
-
-1. Install **GitHub CLI** from https://cli.github.com/
+1. Install **GitHub Copilot CLI** from https://github.com/features/copilot/cli
 
 1. Install **Node.js** version 20 LTS or later from https://nodejs.org/
 
@@ -122,24 +122,7 @@ Either install the required software by following the instructions below, or ver
 
 1. Install **Maven** from https://maven.apache.org/download.cgi
 
-### Step 2: Log into GitHub Copilot
-
-1. Open Visual Studio Code
-    - Note we are using Visual Studio *Code*, not full Visual Studio. GitHub Copilot in Visual Studio Code tends to get the latest features before all other IDEs.
-
-1. Click the 'Set up Copilot' button on the welcome screen
-
-![alt text](image-2.png)
-
-1. Click 'Continue with GitHub'
-
-1. Log in using your GitHub account that has a Copilot subscription
-
-1. Click 'Continue' and 'Authorize Visual-Studio-Code'
-
-1. Click 'Open Visual Studio Code' when prompted
-
-### Step 3: Clone the Workshop Repositories
+### Step 2: Clone the Workshop Repositories
 
 1. Open a terminal in Visual Studio Code (Ctrl+`)
 
@@ -156,7 +139,52 @@ Either install the required software by following the instructions below, or ver
     git checkout -b user/[your-name-here]
     ```
 
-### Step 4: (Optional) Open the project in a devcontainer
+### Step 3: Log into GitHub Copilot
+
+1. Open Visual Studio Code
+    - Note we are using Visual Studio *Code*, not full Visual Studio. GitHub Copilot in Visual Studio Code tends to get the latest features before all other IDEs.
+
+1. Click the 'Set up Copilot' button on the welcome screen
+
+![alt text](image-2.png)
+
+1. Click 'Continue with GitHub'
+
+1. Log in using your GitHub account that has a Copilot subscription
+
+1. Click 'Continue' and 'Authorize Visual-Studio-Code'
+
+1. Click 'Open Visual Studio Code' when prompted
+
+1. Open the cloned project folder in Visual Studio Code (File > Open Folder > select the "ai-workshop-project" folder you just cloned)
+
+### Step 4: Open GitHub Copilot CLI
+
+1. Open up a terminal and change to the cloned project folder, e.g.
+
+    ```bash
+    cd C:\Workshop\ai-workshop-project
+    ```
+
+1. Run `copilot` from the terminal
+
+1. Answer "yes" to the "Do you trust the files in this folder?" question
+
+1. When asked if you would like to set up the terminal for multi-line input support ("Would you like to add this key binding to your terminal configuration?"), answer Yes
+
+1. Type in `/login` and hit enter
+
+1. Select "1. GitHub.com" when asked "What account do you want to log into"
+
+1. Ctrl-Click to open the URL provided, or go to https://github.com/login/device
+
+1. Enter the provided code and agree to granting access to Copilot CLI
+
+1. Type in `/clear` and hit enter to start a new session
+
+1. Leave this window open for future exercises
+
+### Step 5: (Optional) Open the project in a devcontainer
 
 1. If you have Docker Desktop installed, you can open the project in a devcontainer for a fully pre-configured development environment.
 

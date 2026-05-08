@@ -21,7 +21,7 @@ Using your local machine:
 # General Guidelines
 
 - Prompts that contain special commands (e.g. including files with "#", "/" commands, "@" agent references) may need to be typed by hand. Copying and pasting the prompt into the Copilot text area will not pick up these commands.
-- When starting an exercise, be sure to open the corresponding exercise folder. Do not just use the root /ai-workshop folder. This ensures that GitHub Copilot does not get confused about the current context of the project it is working on.
+- When opening the exercise project, be sure to open the project repository folder and not its parent folder. This ensures that exercise instructions are not included in the context, which would be cheating as GitHub Copilot would be able to read ahead and see what the expected outcome is!
 
 # Exercises
 
