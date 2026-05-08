@@ -187,16 +187,20 @@ Updating `AGENTS.md` is a fine close-the-loop move. But this whole investigation
 
 This is meta-prompting taken up a level: instead of *us* writing down the lessons, the agent writes them down, because the agent is the one that just lived through them.
 
-1. Prompt the agent — same Agent mode, same reasoning model:
+To do this *well*, we're going to lean on a purpose-built helper: the **`/create-skill`** skill. It already knows what a good skill file looks like — naming, structure, frontmatter, where on disk it should land, the discipline of "procedural checklist, not blog post." Instead of free-handing a skill from a one-shot prompt and hoping the agent gets the format right, we'll invoke `/create-skill` and let it shepherd the process.
+
+1. Prompt the agent — same Agent mode, same reasoning model. **Start the prompt with `/create-skill`** so the agent picks up the skill-creation workflow before it starts writing:
 
     ```
+    /create-skill
+
     Based on everything you just did in this session, create a reusable
     skill called something like "production-log-troubleshooting" (you pick the exact name) so a future agent — or future me in a fresh chat — can run this same investigation workflow with one prompt.
 
-    The skill should be saved in the appropriate location for Copilot
-    skills/prompt files in this repo (e.g. .github/prompts/ or wherever
-    skills live in our setup) and should capture the things YOU learned
-    during this session, not just generic advice. Specifically include:
+    Use the /create-skill workflow to handle the file location, naming,
+    and structure — don't free-hand it. The skill should capture the
+    things YOU learned during this session, not just generic advice.
+    Specifically include:
 
     - The Azure Storage Account BLOB container URL where the App Service
       console logs live, along with the structure of the container prefix hierarchy so you don't have to rediscover this in the future.
