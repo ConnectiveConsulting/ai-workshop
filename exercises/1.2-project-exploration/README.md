@@ -215,4 +215,4 @@ Take a step back and think about what just happened. You just:
 
 ---
 
-[Next: Copilot Customization](../5.2-copilot-customization)
+[Next: Visual Bug Hunt — Teaching the Agent to See](../6.1-playwright-mcp)
