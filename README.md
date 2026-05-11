@@ -31,8 +31,6 @@ Using your local machine:
 
 6.1 [Visual Bug Hunt — Teaching the Agent to See](exercises/6.1-playwright-mcp/README.md)
 
-9.1 [Generating Tests — Edge Case Hunting with AI](exercises/9.1-generating-tests/README.md)
-
 10.1 [DevOps Log Investigation — When the User Just Says "It's Broken"](exercises/10.1-devops-log-investigation/README.md)
 
 11.1 [Capstone — Building a Full Feature with Superpowers](exercises/11.1-superpowers-capstone/README.md)
