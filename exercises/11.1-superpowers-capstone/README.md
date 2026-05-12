@@ -71,10 +71,10 @@ Plugin management in Copilot CLI happens *inside* the session via slash commands
 1. Refresh your loaded skills so the new plugin is active:
 
     ```
-    /plugin refresh
+    /skills reload
     ```
 
-1. Confirm it landed. You should see a short confirmation message; if you want to be thorough, run `/plugin` and verify `superpowers` shows up in the list.
+1. Confirm it landed. You should see a short confirmation message; if you want to be thorough, run `/plugin list` and verify `superpowers` shows up in the list.
 
 ### Step 3: Pick a Feature
 
